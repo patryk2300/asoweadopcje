@@ -1,0 +1,9 @@
+.logo-image {
+    width: 10%;
+    border-radius: 50%;
+    float: left;
+}
+
+.logo-holder {
+    padding-left: 3%;
+}
