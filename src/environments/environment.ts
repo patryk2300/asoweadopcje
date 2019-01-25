@@ -9,7 +9,7 @@ export const environment = {
     authDomain: "praca-inzynierska-edb11.firebaseapp.com",
     databaseURL: "https://praca-inzynierska-edb11.firebaseio.com",
     projectId: "praca-inzynierska-edb11",
-    storageBucket: "",
+    storageBucket: "gs://praca-inzynierska-edb11.appspot.com",
     messagingSenderId: "762682638790"
   }
 };

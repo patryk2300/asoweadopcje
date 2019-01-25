@@ -1,3 +1,12 @@
-<p>
-  gallery works!
-</p>
+<div>
+  <div *ngFor="let dog of dogs$ | async" class="content">
+    <a (click)="navigate(dog)">
+      <div class="description">{{ dog.value.name }}</div>
+      <div><img src="{{ imgUrl }}" alt="{{ dog.name}} image" style="width: 80%;"></div>
+    </a>
+    <div><span style="float: right; padding-right: 10%;"><button class="btn btn-primary" (click)="remove(dog)">Usuń</button></span></div>
+  </div>
+  <div style="width: 100%; float: left;">
+    <button class="btn btn-primary" style="float: right; margin-right: 4.3%;">Dodaj</button>
+  </div>
+</div>
