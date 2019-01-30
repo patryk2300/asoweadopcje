@@ -133,5 +133,10 @@
       }
     }
   },
-  "defaultProject": "praca-inzynierska"
+  "defaultProject": "praca-inzynierska",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

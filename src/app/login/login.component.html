@@ -1,18 +1,32 @@
-<form class="content" #form>
-  <div class="form-group"> 
-      <div style="margin-bottom: 1%;">
-        <label for="login" id="label">Login</label>
-        <input type="text" class="form-control">
-      </div>
-      <div>
-        <label for="password" id="label">Hasło</label>
-        <input type="password" class="form-control">
-      </div>
-  </div>
-  <div>
-    <div style="margin-bottom: 0.5%;">
-      <a routerLink="/register">Nie masz konta? Zarejestruj się</a>
+<form [formGroup]="form">
+  <div id="content">
+    
+    <div class="form-group"> 
+        <div style="margin-bottom: 2%;">
+          <label for="email" id="label">Email</label>
+          <input 
+          type="text" 
+          class="form-control"
+          formControlName="email">
+        </div>
+        
+        <div>
+          <label for="password" id="label">Hasło</label>
+          <input 
+            type="password" 
+            class="form-control" 
+            formControlName="password">
+        </div>
     </div>
-    <button class="btn btn-primary">Zaloguj</button>
+
+    <div style="padding-top: 5%;">
+      <button 
+      style="width: 100%;" 
+      class="btn btn-primary"
+      type="submit"
+      (click)="signIn()">Zaloguj</button>
+    </div>
+  
   </div>
 </form>
+

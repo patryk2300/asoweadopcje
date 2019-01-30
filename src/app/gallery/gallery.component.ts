@@ -6,7 +6,7 @@ import { UploadFileService } from '../services/upload-file.service';
 @Component({
   selector: 'gallery',
   templateUrl: './gallery.component.html',
-  styleUrls: ['./gallery.component.css']
+  styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
 

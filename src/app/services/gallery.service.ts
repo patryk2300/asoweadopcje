@@ -11,6 +11,7 @@ export class GalleryService {
   galleryRef: AngularFireList<{}>;
 
   constructor(private db: AngularFireDatabase) {
+
     this.galleryRef = this.db.list('/gallery');
 
     this.gallery$ = this.db.list('/gallery').snapshotChanges().pipe(
@@ -19,18 +20,13 @@ export class GalleryService {
         value: change.payload.val()
       })))
     );
+    }
 
-   }
+    get(){
+      return this.gallery$;
+    }
 
-  ngOnInit(): void {
-    
-  }
-
-  get(){
-    return this.gallery$;
-  }
-
-  remove(item){
-    this.galleryRef.remove(item.key);
-  }
+    remove(item){
+      this.galleryRef.remove(item.key);
+    }
 }

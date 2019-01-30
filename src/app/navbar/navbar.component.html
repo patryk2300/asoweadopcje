@@ -10,8 +10,11 @@
             <li routerLinkActive="active current"><a routerLink="/contact">Kontakt</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li routerlinkActive="active current">
-                <a routerLink="/login"><span class="glyphicon glyphicon-user"></span> Zaloguj</a>
+            <li *ngIf="!authService.isLoggedIn">
+                <a routerLink="/login"><span class="glyphicon glyphicon-user" routerLinkActive="active current"></span> Zaloguj</a>
+            </li>
+            <li *ngIf="authService.isLoggedIn" (click)="authService.logout()">
+                    <a routerLink="#"><span class="glyphicon glyphicon-user"></span> Wyloguj</a>
             </li>
         </ul>
     </div>
