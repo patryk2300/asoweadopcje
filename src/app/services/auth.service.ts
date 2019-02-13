@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { User } from 'firebase';
-import { auth } from 'firebase/app';
-import { environment } from 'src/environments/environment';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
@@ -29,7 +27,7 @@ export class AuthService {
         let errorMessage = error.message;
 
         if (errorCode === 'auth/wrong-password') 
-          alert('Wrong password.'); 
+          alert('Błędne hasło bądź email'); 
         else alert(errorMessage);
     }).then(() => {
       this.router.navigate(['#']);

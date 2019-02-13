@@ -8,7 +8,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DescriptionComponent implements OnInit {
   name: string;
-  imgUrl: string;
+  mainImage: string;
+  images: [];
+  desc: string;
 
   constructor(private activatedRouter: ActivatedRoute) { }
 
@@ -16,7 +18,10 @@ export class DescriptionComponent implements OnInit {
     this.activatedRouter.queryParams
       .subscribe(params => {
         this.name = params.name;
-        this.imgUrl = params.imgUrl;
+        this.mainImage = params.mainImage;
+        this.images = params.subImages;
+        this.desc = params.desc;
+        console.log(params);
       });
   }
 
