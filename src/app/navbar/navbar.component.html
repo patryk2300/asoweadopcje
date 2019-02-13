@@ -1,5 +1,5 @@
-<nav class="navbar navbar-fixed-top navbar-inverse">
-    <div class="container-fluid">
+<!-- <nav class="navbar navbar-dark bg-dark">
+    <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" routerLink='#'>Asowe Adopcje</a>
         </div>
@@ -18,4 +18,36 @@
             </li>
         </ul>
     </div>
+</nav> -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" routerLink="">
+            <span style="padding-right: 1%;">
+                <i class="fas fa-dog"></i>
+            </span>
+            Asowe Adopcje
+        </a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item" routerLinkActive="active current">
+                <a routerLink="#" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active current">
+                <a routerLink="/gallery" class="nav-link">Psiaki</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active current">
+                <a routerLink="/contact" class="nav-link">Kontakt</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+            <li *ngIf="!authService.isLoggedIn" class="nav-item">
+                <a routerLink="/login" class="nav-link"><span class="glyphicon glyphicon-user" routerLinkActive="active current"></span> Zaloguj</a>
+            </li>
+            <li *ngIf="authService.isLoggedIn" (click)="authService.logout()" class="nav-item">
+                <a routerLink="#" class="nav-link"> Wyloguj</a>
+            </li>
+        </ul>
+    </div>
+
 </nav>
+  
