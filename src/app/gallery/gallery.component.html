@@ -1,12 +1,11 @@
 <div>
   <div *ngFor="let dog of dogs$ | async" class="content">
-    
-    <a (click)="navigate(dog)">
+    <a (click)="navigate(dog.value)">
       <div class="description">{{ dog.value.name }}</div>
       <div>
         <img 
-          src="{{ imgUrl }}" 
-          alt="{{ dog.name}} image" 
+          src="{{ dog.value.images.main }}" 
+          alt="{{ dog.value.name }} image" 
           style="width: 80%;">
       </div>
     </a>
