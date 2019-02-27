@@ -15,7 +15,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { DescriptionComponent } from './description/description.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +30,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     GalleryComponent,
     LoginComponent,
     DescriptionComponent,
+    FileUploadComponent,
+    AdminPanelComponent,
   ],
   imports: [
     [
+      FormsModule,
       BrowserModule,
       AppRoutingModule,
+      AngularFirestoreModule,
+      AngularFireStorageModule,
       AngularFireModule.initializeApp(environment.firebase),
       AngularFireDatabaseModule,
       AngularFireAuthModule,

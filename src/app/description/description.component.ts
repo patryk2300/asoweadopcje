@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { GalleryService } from '../services/gallery.service';
 
 @Component({
   selector: 'app-description',
@@ -7,22 +7,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./description.component.scss']
 })
 export class DescriptionComponent implements OnInit {
-  name: string;
-  mainImage: string;
-  images: [];
-  desc: string;
+  dog;
 
-  constructor(private activatedRouter: ActivatedRoute) { }
+  constructor(private service: GalleryService) { }
 
   ngOnInit() {
-    this.activatedRouter.queryParams
-      .subscribe(params => {
-        this.name = params.name;
-        this.mainImage = params.mainImage;
-        this.images = params.subImages;
-        this.desc = params.desc;
-        console.log(params);
-      });
+    if(this.service.currentDog)
+      this.dog = this.service.currentDog;
   }
 
 }
