@@ -1,32 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
-import { map } from 'rxjs/operators';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { FileManagerService } from './file-manager.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GalleryService {
-  gallery$: Observable<{}>;
-  galleryRef: AngularFireList<{}>;
-
-  constructor(private db: AngularFireDatabase) {
-
-    this.galleryRef = this.db.list('/gallery');
-
-    this.gallery$ = this.db.list('/gallery').snapshotChanges().pipe(
-      map(changes => changes.map(change => ({
-        key: change.payload.key,
-        value: change.payload.val()
-      })))
-    );
-    }
+  gallery$: Observable<any>;
+  galleryRef: AngularFirestoreCollection;
+  basePath: string = '/gallery';
+  current;
+  
+  constructor(private db: AngularFirestore, private uplService: FileManagerService) {
+    this.galleryRef = this.db.collection(this.basePath);
+  }
 
     get(){
-      return this.gallery$;
+      this.gallery$ = this.galleryRef.get(); 
     }
 
     remove(item){
-      this.galleryRef.remove(item.key);
+      this.galleryRef.doc(`${ item.id }`).delete();
+    }
+
+    updateName(item, name){
+      let newItem = JSON.parse(JSON.stringify(item.name));
+      newItem.name = name;
+      
+      this.galleryRef.doc(`${ item.id }`).update(newItem);
+      
+    }
+
+    get currentDog(){
+      return this.current;
+    }
+    
+    set currentDog(dog){
+      this.current = dog;
     }
 }

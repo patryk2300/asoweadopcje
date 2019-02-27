@@ -1,15 +1,46 @@
-.content{
-    float: left; 
-    width: 33%; 
-    padding-bottom: 3%; 
-    text-align: center;
-    cursor: pointer;
+.gallery{
+    position: relative;
+    overflow: hidden;
+    width: fit-content;
+    background-color: rgba($color: #9E9AAB, $alpha: 0.4);
+    border-radius: 1%;
+    border-width: 1px;
+    border-color: gray;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-self: center;
+    margin: 0 auto;
+    margin-top: 4%;
 }
 
-.description{
+.gallery-card{
+    width: 450px;
+    height: 400px;
+    overflow: hidden;
+    float: left;
+    text-align: center;
+}
+
+.gallery-card-title{
     text-align: center; 
     margin-bottom: 2%; 
     font-size: 150%; 
     font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
 }
 
+#gallery-card-img{
+    outline-color: black;
+    outline-style: solid;
+    width: 350px;
+    height: 220px;
+    position: relative;
+    cursor: pointer;
+}
+
+#add-btn{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: end;
+}

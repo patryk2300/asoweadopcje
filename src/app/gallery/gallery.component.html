@@ -1,29 +1,51 @@
-<div>
-  <div *ngFor="let dog of dogs$ | async" class="content">
-    <a (click)="navigate(dog.value)">
-      <div class="description">{{ dog.value.name }}</div>
-      <div>
-        <img 
-          src="{{ dog.value.images.main }}" 
-          alt="{{ dog.value.name }} image" 
-          style="width: 80%;">
-      </div>
-    </a>
+<div class="gallery">
+  <div *ngFor="let dog of dogs$ | async" class="gallery-card">
+    
+    <div class="gallery-card-title">
+      <span *ngIf="!toEdit" (click)="navigate(dog)">
+        {{ dog.name }}
+      </span>
+      <span *ngIf="toEdit">
+        <input type="text" [(ngModel)]="title">
+      </span>
+
+      <span style="padding-left: 2%;" *ngIf="authService.isLoggedIn">
+          <i class="far fa-edit" (click)="edit()"></i>
+          <i style="padding-left: 1%;" class="far fa-trash-alt" (click)="remove(dog)"></i>
+      </span>
+    </div>
+    <div (click)="navigate(dog)">
+      <img 
+        src="{{ dog.mainImg }}" 
+        alt="{{ dog.name }} image" 
+        id="gallery-card-img">
+    </div>
     
     <div>
-      <span style="float: right; padding-right: 10%;">
+        <span style="float: right; padding-right: 10%;" *ngIf="toEdit" (click)="updateName(dog)">
+          <button 
+            class="btn btn-primary" 
+            >Zatwierdź</button>
+        </span>
+    </div>
+
+    <div>
+      <span style="float: right; padding-right: 1%;" *ngIf="toEdit">
         <button 
           class="btn btn-primary" 
-          (click)="remove(dog)">Usuń</button>
+          (click)="edit()">Anuluj</button>
       </span>
     </div>
   
   </div>
+    
+  <div>
+    <file-upload *ngIf="toAdd"></file-upload>
+  </div>    
   
-  <div style="width: 100%; float: left;">
-    <button 
+  <span id="add-btn" *ngIf="authService.isLoggedIn">
+      <button 
     class="btn btn-primary" 
-    style="float: right; margin-right: 4.3%;">Dodaj</button>
-  </div>
-
+     (click) = add()>Dodaj</button>
+  </span>
 </div>

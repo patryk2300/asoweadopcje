@@ -1,32 +1,36 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" routerLink="">
-            <span style="padding-right: 1%;">
-                <i class="fas fa-dog"></i>
-            </span>
-            Asowe Adopcje
-        </a>
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item" routerLinkActive="active current">
-                <a routerLink="#" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active current">
-                <a routerLink="/gallery" class="nav-link">Psiaki</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active current">
-                <a routerLink="/contact" class="nav-link">Kontakt</a>
-            </li>
-        </ul>
+<div style="overflow: hidden; width: 100%; height: 100%;">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a class="navbar-brand" routerLink="">
+                <span style="padding-right: 1%;">
+                    <i class="fas fa-dog"></i>
+                </span>
+                Asowe Adopcje
+            </a>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item" routerLinkActive="active current">
+                    <a routerLink="#" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active current">
+                    <a routerLink="/gallery" class="nav-link">Psiaki</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active current">
+                    <a routerLink="/contact" class="nav-link">Kontakt</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active current" *ngIf="authService.isLoggedIn">
+                    <a routerLink="/admin" class="nav-link">Zarządzanie</a>
+                </li>
+            </ul>
 
-        <ul class="navbar-nav ml-auto">
-            <li *ngIf="!authService.isLoggedIn" class="nav-item">
-                <a routerLink="/login" class="nav-link"><span class="glyphicon glyphicon-user" routerLinkActive="active current"></span> Zaloguj</a>
-            </li>
-            <li *ngIf="authService.isLoggedIn" (click)="authService.logout()" class="nav-item">
-                <a routerLink="#" class="nav-link"> Wyloguj</a>
-            </li>
-        </ul>
-    </div>
+            <ul class="navbar-nav ml-auto">
+                <li *ngIf="!authService.isLoggedIn" class="nav-item">
+                    <a routerLink="/login" class="nav-link"><span class="glyphicon glyphicon-user" routerLinkActive="active current"></span> Zaloguj</a>
+                </li>
+                <li *ngIf="authService.isLoggedIn" (click)="authService.logout()" class="nav-item">
+                    <a routerLink="#" class="nav-link"> Wyloguj</a>
+                </li>
+            </ul>
+        </div>
 
-</nav>
-  
+    </nav>
+</div>

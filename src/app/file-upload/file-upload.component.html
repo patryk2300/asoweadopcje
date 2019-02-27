@@ -1,0 +1,23 @@
+<div class="file-upload">
+  <input type="text" [(ngModel)]="dogName">
+
+  <div>
+    <input type="file" accept="image/*" (change)="detectFile($event)">
+  </div>
+
+  <div>
+    <span style="float: left; padding-right: 1%;" (click)="discard()">
+      <button 
+        class="btn btn-primary" 
+        >Anuluj</button>
+    </span>
+  </div>
+
+  <div>
+    <span style="float: left;" >
+      <button 
+        class="btn btn-primary" 
+        (click)="apply()">Zatwierdź</button>
+    </span>
+  </div>
+</div>

@@ -6,6 +6,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { GalleryComponent } from './gallery/gallery.component';
 import { LoginComponent } from './login/login.component';
 import { DescriptionComponent } from './description/description.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'gallery', component: GalleryComponent },
   { path: 'gallery/:name', component: DescriptionComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'admin', component: AdminPanelComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 

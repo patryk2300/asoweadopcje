@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyBFGonMuYJHZnvaOekTeIwzyc67oEQoOKs",
-    authDomain: "praca-inzynierska-edb11.firebaseapp.com",
-    databaseURL: "https://praca-inzynierska-edb11.firebaseio.com",
-    projectId: "praca-inzynierska-edb11",
-    storageBucket: "gs://praca-inzynierska-edb11.appspot.com",
-    messagingSenderId: "762682638790"
+    apiKey: "AIzaSyBR9z8gdz2l8a2g4HPmZoEUZ0RlAW1lsnQ",
+    authDomain: "pracainzynierska2.firebaseapp.com",
+    databaseURL: "https://pracainzynierska2.firebaseio.com",
+    projectId: "pracainzynierska2",
+    storageBucket: "pracainzynierska2.appspot.com",
+    messagingSenderId: "326199182272"
   }
 };
 
