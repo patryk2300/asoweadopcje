@@ -1,9 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GalleryService } from '../services/gallery.service';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ManageGalleryCardComponent } from '../manage-gallery-card/manage-gallery-card.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'gallery',
@@ -18,7 +21,12 @@ export class GalleryComponent implements OnInit {
   toEdit: boolean;
   toAdd: boolean;
 
-  constructor(private router: Router, private service: GalleryService, private db: AngularFirestore, private authService: AuthService) {}
+  constructor(
+    private router: Router, 
+    private service: GalleryService, 
+    private db: AngularFirestore, 
+    private authService: AuthService,
+    private modalService: NgbModal ) {}
   
   ngOnInit() {
     this.dogs$ = this.db
@@ -37,7 +45,7 @@ export class GalleryComponent implements OnInit {
   }
 
   remove(dog){
-    this.service.remove(dog);
+    this.service.removeCard(dog);
   }
 
   add(){
@@ -47,15 +55,18 @@ export class GalleryComponent implements OnInit {
   edit(){
     this.toEdit = !this.toEdit;
   }
-  
-  // updateName(dog){
-  //   this.service.updateName(dog, this.title);
-  //   this.toEdit = !this.toEdit;
-  // }
 
   navigate(dog){
     this.service.currentDog = dog;
 
     this.router.navigate([`/gallery/${ dog.name }`]);
+  }
+
+  openFormModal() {
+    const modalRef = this.modalService.open(ManageGalleryCardComponent);
+
+    modalRef.result.then((result) => {
+      console.log(result);
+    }).catch((error) => (console.log(error)));
   }
 }

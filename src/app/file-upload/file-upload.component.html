@@ -1,23 +1,30 @@
-<div class="file-upload">
-  <input type="text" [(ngModel)]="dogName">
-
-  <div>
-    <input type="file" accept="image/*" (change)="detectFile($event)">
-  </div>
-
-  <div>
-    <span style="float: left; padding-right: 1%;" (click)="discard()">
-      <button 
-        class="btn btn-primary" 
-        >Anuluj</button>
+<div class="dropzone"
+     fileDrop
+     (hovered)="toggleHover($event)"
+     (dropped)="detectUpload($event)"
+     [class.hovering]="isHovering">
+    <span *ngIf="!isSelected">
+      <h3>Przeciągnij</h3>
+      
+      <input class="file-input" 
+        name="files" 
+        id="files" 
+        type="file" 
+        (change)="detectUpload($event.target.files)"
+        multiple>
+      
+        
+      <label for="files" class="file-label">
+          <i class="fas fa-download"></i> lub wybierz pliki..
+      </label>
     </span>
-  </div>
-
-  <div>
-    <span style="float: left;" >
-      <button 
-        class="btn btn-primary" 
-        (click)="apply()">Zatwierdź</button>
+    <span *ngIf="isSelected">
+      <h2 *ngIf="this.galleryCard.fileList.length === 1">Wybrano {{ this.galleryCard.fileList.length }} plik.</h2>
+      <h2 *ngIf="this.galleryCard.fileList.length > 1">Wybrano {{ this.galleryCard.fileList.length }} plików.</h2>
     </span>
-  </div>
+
+</div>
+
+<div>
+  <progress></progress>
 </div>

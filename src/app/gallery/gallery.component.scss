@@ -1,4 +1,5 @@
 .gallery{
+    margin: 0 auto;
     position: relative;
     overflow: hidden;
     width: fit-content;
@@ -8,17 +9,15 @@
     border-color: gray;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    align-self: center;
-    margin: 0 auto;
-    margin-top: 4%;
 }
 
 .gallery-card{
     width: 450px;
-    height: 400px;
+    height: 320px;
     overflow: hidden;
     float: left;
     text-align: center;
+    padding-top: 3%;
 }
 
 .gallery-card-title{
@@ -29,12 +28,11 @@
     cursor: pointer;
 }
 
-#gallery-card-img{
+.gallery-card-img{
     outline-color: black;
     outline-style: solid;
     width: 350px;
     height: 220px;
-    position: relative;
     cursor: pointer;
 }
 

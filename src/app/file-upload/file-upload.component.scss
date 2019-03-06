@@ -1,8 +1,54 @@
-.file-upload{
-    position: relative;
-    width: fit-content;
+// .card__upload__label-files{   
+//     margin: 0 auto;
+//     text-align: center;
+//     border-style: dashed;
+//     border-width: 2px;
+//     border-color: lightgray;
+// }
+
+.dropzone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: 200;
+    height: 200px;
+    border: 2px dashed #f16624;
+    border-radius: 5px;
+    background: white;
+    margin: 10px 0;
+
+    &.hovering {
+        border: 2px solid #f16624;
+        color: #dadada !important;
+    }
+
+    .file-label {
+        background: #9c3e3e;
+        padding: 10px 20px;
+        border-radius: 12px;
+        color: #ffffff;
+        font-size: 13px;
+        font-family: Helvetica, Arial, Sans-Serif;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+
+    .file-input{
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
 }
 
-*{
-    text-align: center;
+progress{
+    width: 100%;
+    
+}
+
+progress::-webkit-progress-value {
+    transition: width 0.1 ease;
 }
