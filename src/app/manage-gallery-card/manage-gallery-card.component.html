@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <h4 class="modal-title">Dodaj Psiaka</h4>
+    <button 
+      type="button" 
+      class="close" 
+      aria-label="Close"
+      (click)="activeModal.dismiss('Cross click')">
+    </button>
+</div>
+<form class="card" enctype="multipart/form-data">
+    <div class="modal-body">
+
+        <div class="form-group">
+          <label for="username">Imię</label>
+          <input 
+            name="username"
+            id="username"
+            type="text" 
+            class="form-control"
+            [(ngModel)]="dogName"/>
+        </div>
+
+        <div class="form-group">
+          <label for="file">Główne zdjęcie</label>
+          <input 
+            type="file" 
+            name="mainFile"
+            id="mainFile"
+            class="form-control"
+            accept="image/*"
+            (change)="detectFile($event)"/>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Opis</label>
+          <textarea 
+            name="description" 
+            id="desc" 
+            cols="30" 
+            rows="10"
+            [(ngModel)]="desc"
+            class="form-control"></textarea>
+        </div>
+        <label for="images"> Zdjęcia do galerii</label>
+        <file-upload></file-upload>
+
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-success" (click)="apply()">
+        Zatwierdź
+      </button>
+    </div>
+</form>

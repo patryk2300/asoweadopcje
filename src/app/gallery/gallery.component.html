@@ -2,50 +2,41 @@
   <div *ngFor="let dog of dogs$ | async" class="gallery-card">
     
     <div class="gallery-card-title">
-      <span *ngIf="!toEdit" (click)="navigate(dog)">
-        {{ dog.name }}
+      <span 
+        *ngIf="!toEdit" 
+        (click)="navigate(dog)">
+        {{ dog.dogName }}
       </span>
       <span *ngIf="toEdit">
-        <input type="text" [(ngModel)]="title">
+        <input 
+          type="text" 
+          [(ngModel)]="title">
       </span>
 
       <span style="padding-left: 2%;" *ngIf="authService.isLoggedIn">
-          <i class="far fa-edit" (click)="edit()"></i>
-          <i style="padding-left: 1%;" class="far fa-trash-alt" (click)="remove(dog)"></i>
+          <i 
+            class="far fa-edit" 
+            (click)="manageGalleryCard(dog)"></i>
+          <i 
+            style="padding-left: 1%;" 
+            class="far fa-trash-alt" 
+            (click)="remove(dog)"></i>
       </span>
     </div>
-    <div (click)="navigate(dog)">
+    <span (click)="navigate(dog)">
       <img 
-        src="{{ dog.mainImg }}" 
-        alt="{{ dog.name }} image" 
-        id="gallery-card-img">
-    </div>
+        class="gallery-card-img"
+        src="{{ dog.mainImg.downloadUrl }}" 
+        alt="{{ dog.dogName }} image" >
+    </span>
     
-    <div>
-        <span style="float: right; padding-right: 10%;" *ngIf="toEdit" (click)="updateName(dog)">
-          <button 
-            class="btn btn-primary" 
-            >Zatwierdź</button>
-        </span>
-    </div>
-
-    <div>
-      <span style="float: right; padding-right: 1%;" *ngIf="toEdit">
-        <button 
-          class="btn btn-primary" 
-          (click)="edit()">Anuluj</button>
-      </span>
-    </div>
-  
   </div>
     
-  <div>
+  <!-- <div>
     <file-upload *ngIf="toAdd"></file-upload>
-  </div>    
+  </div>     -->
   
   <span id="add-btn" *ngIf="authService.isLoggedIn">
-      <button 
-    class="btn btn-primary" 
-     (click) = add()>Dodaj</button>
+      <button class="btn btn-primary" (click)="openFormModal()">Dodaj</button>
   </span>
 </div>

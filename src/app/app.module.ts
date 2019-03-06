@@ -20,6 +20,11 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { ManageGalleryCardComponent } from './manage-gallery-card/manage-gallery-card.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FileDropDirective } from './file-drop.directive';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +37,8 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     DescriptionComponent,
     FileUploadComponent,
     AdminPanelComponent,
+    ManageGalleryCardComponent,
+    FileDropDirective,
   ],
   imports: [
     [
@@ -44,10 +51,14 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
       AngularFireDatabaseModule,
       AngularFireAuthModule,
       BrowserAnimationsModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      NgbModule.forRoot(),
     ]
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [FileDropDirective],
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ManageGalleryCardComponent
+  ]
 })
 export class AppModule { }
