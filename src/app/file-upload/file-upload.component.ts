@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FileManagerService } from '../services/file-manager.service';
 import { ManageGalleryCardComponent } from '../manage-gallery-card/manage-gallery-card.component';
 
 @Component({

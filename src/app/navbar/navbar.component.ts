@@ -8,5 +8,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class NavbarComponent {
 
+  navbarCollapsed: boolean;
+
   constructor(private authService: AuthService) { }
 }

@@ -29,12 +29,11 @@ export class FileManagerService {
 
     this.task = this.storage.upload(`${ this.basePath }/${ upload.attach }/${upload.file.name}`, upload.file)
 
-    this.storageRef = this.storage.ref(`${ this.basePath }/${ upload.attach }/${upload.file.name}`);
-
     this.percentage = this.task.percentageChanges();
 
     this.task.then(() => {
-      this.storageRef.getDownloadURL()
+      this.storage.ref(`${ this.basePath }/${ upload.attach }/${upload.file.name}`)
+        .getDownloadURL()
         .subscribe(url => {
           upload.url = url;
           
@@ -42,7 +41,6 @@ export class FileManagerService {
             this.saveFileUrl(upload, true);
 
             upload.mainFile = null;
-            return;
           } else this.saveFileUrl(upload, false);
         
         });
@@ -76,10 +74,6 @@ export class FileManagerService {
         images: firebase.firestore.FieldValue.arrayUnion({ downloadUrl: upload.url, imgName: upload.name })
       }, {merge: true});
     }
-  }
-
-  getDoc(docName: string){
-    return this.db.collection(this.basePath).doc(docName).get();
   }
 
   createFbObject(){

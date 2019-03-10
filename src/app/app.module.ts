@@ -24,6 +24,7 @@ import { ManageGalleryCardComponent } from './manage-gallery-card/manage-gallery
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FileDropDirective } from './file-drop.directive';
+import { DisplayImageDirective } from './display-image.directive';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { FileDropDirective } from './file-drop.directive';
     AdminPanelComponent,
     ManageGalleryCardComponent,
     FileDropDirective,
+    DisplayImageDirective,
   ],
   imports: [
     [
@@ -55,7 +57,7 @@ import { FileDropDirective } from './file-drop.directive';
       NgbModule.forRoot(),
     ]
   ],
-  providers: [FileDropDirective],
+  providers: [FileDropDirective, DisplayImageDirective],
   bootstrap: [AppComponent],
   entryComponents: [
     ManageGalleryCardComponent

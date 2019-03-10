@@ -4,7 +4,7 @@
     overflow: hidden;
     width: fit-content;
     background-color: rgba($color: #9E9AAB, $alpha: 0.4);
-    border-radius: 1%;
+    border-radius: 5%;
     border-width: 1px;
     border-color: gray;
     display: grid;
@@ -31,6 +31,8 @@
 .gallery-card-img{
     outline-color: black;
     outline-style: solid;
+    object-fit: contain;
+    background-color: white;
     width: 350px;
     height: 220px;
     cursor: pointer;
