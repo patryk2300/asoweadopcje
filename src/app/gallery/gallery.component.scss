@@ -10,6 +10,17 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
+@media only screen and (max-width: 1024px){
+    .gallery{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .gallery{
+        grid-template-columns: 1fr;
+    }
+}
 
 .gallery-card{
     width: 450px;
@@ -18,6 +29,19 @@
     float: left;
     text-align: center;
     padding-top: 3%;
+}
+
+@media only screen and (max-width: 500px){
+    .gallery{
+        width: 100%;
+    }
+    .gallery-card{
+        width: auto;
+    }
+
+    .gallery-card-img{
+        width: 80%;
+    }
 }
 
 .gallery-card-title{

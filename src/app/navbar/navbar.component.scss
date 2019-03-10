@@ -1,6 +1,6 @@
 @media screen and (min-width: 992px){
     .container{
-        margin-bottom: 56px;
+        padding-bottom: 56px;
     }
 
     .container-mobile{
@@ -11,9 +11,5 @@
 @media screen and (max-width: 991px){
     .container{
         display: none;
-    }
-
-    .container-mobile{ 
-        // margin-bottom: 20px;
     }
 }

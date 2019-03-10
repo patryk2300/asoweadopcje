@@ -2,33 +2,35 @@
   <div class="desc_title">
     <strong>{{ dog.dogName }}</strong>
   </div>
-  <div>
-    <div class="desc_main-image">
-      <img src="{{ dog.mainImg.downloadUrl }}" alt="img" style="width: 40%; float: left;">
-    </div>
-    <div class="desc_description" >
-        {{ dog.desc }}
-    </div>
+
+  <img src="{{ dog.mainImg.downloadUrl }}" alt="img" class="desc_main-image">
+  
+  <div class="desc_description" >
+      {{ dog.desc }}
   </div>
+  
   <div class="desc_sub-images">  
     <div *ngFor="let img of dog.images" class="desc_sub-images_placeholder">
       
       <img src="{{ img.downloadUrl }}" 
            alt="img"      
-           (click) = "display = 'block'; currentUrl = img.downloadUrl"
+           (click) = "displayImage(img.downloadUrl)"
            class="desc_sub-images_sub-image">
           
     </div>
   </div>
   
   <!-- The Modal -->
-  <div id="myModal" class="modal" [ngStyle]="{'display': display }" (click)="display='none'">
+  <div id="myModal" class="modal" [ngStyle]="{'display': display }">
 
     <!-- The Close Button -->
     <span class="close" (click)="display = 'none'">&times;</span>
 
     <!-- Modal Content (The Image) -->
-    <img class="modal-content" id="img01" src="{{ currentUrl }}">
+    <img class="modal-content" id="img01" [src]="image">
+    
+    <span class="ml" (click)="changeImage(-1)">&lt;</span>
+    <span class="mr" (click)="changeImage(1)">&gt;</span>
 
   </div>
 

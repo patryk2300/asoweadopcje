@@ -9,105 +9,153 @@
     -webkit-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.58);
     -moz-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.58);
     box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.58);
+}
 
-    .desc_title{
-        font-size: 3em;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        padding: 2% 0% 2% 5%;
-        width: 100%;
+.desc_title{
+    font-size: 3em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 2% 0% 2% 5%;
+    width: 100%;
+}
+
+.desc_main-image{
+    width: 40%;
+    padding-left: 1%;
+    text-align: center;
+}
+
+.desc_description{
+    float: right;
+    width: 58%;
+    font-size: 0.9em;
+    text-align: center;
+}
+@media(min-width: 1920px){
+    .desc_description{
+        font-size: 1.2em;
     }
-
+}
+@media(max-width: 1080px){
+    .desc_description{
+        font-size: 0.6em;
+    }
+}
+@media(max-width: 600px){
     .desc_main-image{
         width: 100%;
-        padding-left: 1%;
-        text-align: center;
     }
-
     .desc_description{
-        float: right;
-        width: 58%;
-        font-size: 0.9em;
-        text-align: center;
-    }
-
-    .desc_sub-images{
         width: 100%;
-        padding-top: 5%;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        display: grid;
-        float: left;
-        align-items: center;
+        padding-top: 4%;
     }
+}
 
-    .desc_sub-images_placeholder{
-        // border-style: dotted;
-        text-align: center;
-        padding-bottom: 2%;
-    }
+.desc_sub-images{
+    width: 100%;
+    padding-top: 5%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: grid;
+    float: left;
+    align-items: center;
+}
 
-    .desc_sub-images_sub-image{
-        position: relative;
-        width: 75%;
-        border-style: solid;
-        border-color: black;
-        overflow: hidden;
-        cursor: pointer;
-    }
+.desc_sub-images_placeholder{
+    // border-style: dotted;
+    text-align: center;
+    padding-bottom: 2%;
+}
 
-    .desc_sub-images_sub-image:hover { opacity: 0.7; }
+.desc_sub-images_sub-image{
+    position: relative;
+    width: 75%;
+    border-style: solid;
+    border-color: black;
+    overflow: hidden;
+    cursor: pointer;
+}
 
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-    }
+.desc_sub-images_sub-image:hover { opacity: 0.7; }
 
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: auto !important;
+    height: 100%;
+}
+
+.modal-content { 
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+.close {
+    position: absolute;
+    top: 8%;
+    right: 1%;
+    color: gray;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.mr {
+    position: absolute;
+    top: 50%;
+    right: 1%;
+    color: gray;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.mr:hover{
+    color: #f1f1f1;
+}
+
+.ml {
+    position: absolute;
+    top: 50%;
+    left: 1%;
+    color: gray;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.ml:hover{
+    color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+    color: #f1f1f1;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 700px){
     .modal-content {
-        margin: auto;
-        display: block;
-        width: 80%;
-        max-width: 700px;
+      width: 100%;
     }
-
-    .modal-content { 
-        animation-name: zoom;
-        animation-duration: 0.6s;
-    }
-
-    @keyframes zoom {
-        from {transform:scale(0)} 
-        to {transform:scale(1)}
-    }
-
-    .close {
-        position: absolute;
-        top: 5%;
-        right: 1%;
-        color: #f1f1f1;
-        font-size: 40px;
-        font-weight: bold;
-        transition: 0.3s;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #bbb;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    @media only screen and (max-width: 700px){
-        .modal-content {
-          width: 100%;
-        }
-    }
-
 }

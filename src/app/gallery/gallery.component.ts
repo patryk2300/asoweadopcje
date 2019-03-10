@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { GalleryService } from '../services/gallery.service';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { map } from 'rxjs/operators';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ManageGalleryCardComponent } from '../manage-gallery-card/manage-gallery-card.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
