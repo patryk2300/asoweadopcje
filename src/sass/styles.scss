@@ -1,11 +1,9 @@
-@import '~bootstrap/dist/css/bootstrap.css';
+@import '~bootstrap/scss/bootstrap.scss';
 @import './variables';
 @import './mixins';
 
-@import
-    '~bootstrap/scss/functions';
     
 
-$font-stack: Helvetica, sans-serif;
+
 
 html, body { height: 100%; margin: 0; font-family: $font-stack; }

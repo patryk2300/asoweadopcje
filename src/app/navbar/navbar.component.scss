@@ -1,0 +1,19 @@
+@media screen and (min-width: 992px){
+    .container{
+        margin-bottom: 56px;
+    }
+
+    .container-mobile{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 991px){
+    .container{
+        display: none;
+    }
+
+    .container-mobile{ 
+        // margin-bottom: 20px;
+    }
+}

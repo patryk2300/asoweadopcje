@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, pipe } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FileManagerService } from './file-manager.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,17 +16,30 @@ export class GalleryService {
   
   constructor(private db: AngularFirestore, private storage: AngularFireStorage, private fileManager: FileManagerService) {
     this.galleryRef = this.db.collection(this.basePath);
+    this.gallery$ = this.get();
   }
 
     get(){
-      this.gallery$ = this.galleryRef.get(); 
+      return this.db.collection('/gallery')
+        .snapshotChanges()
+        .pipe(
+          map((actions) => {
+            return actions.map(a => {
+              
+              const data = a.payload.doc.data();
+              const id = a.payload.doc.id;
+
+              return { id, ...data};
+            });
+        }));
     }
 
     removeCard(item){
       let mainImg;
       let imgs: Array<any>;
 
-      this.fileManager.getDoc(item.id)
+      this.getDoc(item.id)
+        .get()
         .toPromise()
         .then(doc => {
           mainImg = doc.get('mainImg');
@@ -35,7 +49,6 @@ export class GalleryService {
           this.storage.ref(this.basePath).child(`${item.id}/${mainImg.imgName}`)
             .delete();
           imgs.forEach(img => {
-            console.log(img.imgName);
             this.storage.ref(this.basePath).child(`${item.id}/${img.imgName}`)
               .delete();
           });
@@ -58,5 +71,9 @@ export class GalleryService {
     
     set currentDog(dog){
       this.current = dog;
+    }
+
+    getDoc(docName: string){
+      return this.db.collection(this.basePath).doc(docName);
     }
 }

@@ -29,19 +29,7 @@ export class GalleryComponent implements OnInit {
     private modalService: NgbModal ) {}
   
   ngOnInit() {
-    this.dogs$ = this.db
-    .collection('/gallery')
-    .snapshotChanges()
-    .pipe(
-      map((actions) => {
-        return actions.map(a => {
-          
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-
-          return { id, ...data};
-        });
-    }));
+    this.dogs$ = this.service.gallery$;
   }
 
   remove(dog){
@@ -59,7 +47,7 @@ export class GalleryComponent implements OnInit {
   navigate(dog){
     this.service.currentDog = dog;
 
-    this.router.navigate([`/gallery/${ dog.name }`]);
+    this.router.navigate([`/gallery/${ dog.dogName }`]);
   }
 
   openFormModal() {

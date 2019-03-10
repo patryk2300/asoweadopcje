@@ -1,4 +1,6 @@
-<div style="overflow: hidden; width: 100%; height: 100%; margin-bottom: 4%;">
+<!-- normal nav bar -->
+<div class="container">
+    
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <a class="navbar-brand" routerLink="">
@@ -31,6 +33,53 @@
                 </li>
             </ul>
         </div>
+    </nav>
 
+</div>
+<!-- mobile nav bar -->
+<div class="container-mobile">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" routerLink="">
+            <span style="padding-right: 1%;">
+                <i class="fas fa-dog"></i>
+            </span>
+            Asowe Adopcje
+        </a>
+        
+        <button 
+            class="navbar-toggler" 
+            type="button"
+            (click)="navbarCollapsed = !navbarCollapsed">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        
+        <div class="collapse navbar-collapse"
+                [ngClass]="{'show': navbarCollapsed}">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" routerLinkActive="active current">
+                    <a routerLink="#" class="nav-link">Home</a>
+                </li>
+            
+                <li class="nav-item" routerLinkActive="active current">
+                    <a routerLink="/gallery" class="nav-link">Psiaki</a>
+                </li>
+
+                <li class="nav-item" routerLinkActive="active current">
+                    <a routerLink="/contact" class="nav-link">Kontakt</a>
+                </li>
+
+                <li class="nav-item" routerLinkActive="active current" *ngIf="authService.isLoggedIn">
+                    <a routerLink="/admin" class="nav-link">Zarządzanie</a>
+                </li>
+
+                <li *ngIf="!authService.isLoggedIn" class="nav-item">
+                    <a routerLink="/login" class="nav-link"><span class="glyphicon glyphicon-user" routerLinkActive="active current"></span> Zaloguj</a>
+                </li>
+                <li *ngIf="authService.isLoggedIn" (click)="authService.logout()" class="nav-item">
+                    <a routerLink="#" class="nav-link"> Wyloguj</a>
+                </li>
+            </ul>
+        </div>
     </nav>
 </div>

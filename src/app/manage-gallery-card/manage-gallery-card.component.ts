@@ -24,12 +24,8 @@ export class ManageGalleryCardComponent {
   dog: any;
 
   constructor(
-    private service: GalleryService,
     public activeModal: NgbActiveModal, 
-    private fileManager: FileManagerService,) {
-
-    this.dog = this.service.currentDog;
-  }
+    private fileManager: FileManagerService,) {}
 
   closeModal(){
     this.activeModal.close('Modal Closed');
@@ -60,8 +56,6 @@ export class ManageGalleryCardComponent {
           this.fileManager.pushUpload(upload);
         });
       });
-
-      
     }
   }
 
