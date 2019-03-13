@@ -25,6 +25,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FileDropDirective } from './file-drop.directive';
 import { DisplayImageDirective } from './display-image.directive';
+import { ScheduleComponent } from './schedule/schedule.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { DisplayImageDirective } from './display-image.directive';
     ManageGalleryCardComponent,
     FileDropDirective,
     DisplayImageDirective,
+    ScheduleComponent,
+    FooterComponent,
   ],
   imports: [
     [

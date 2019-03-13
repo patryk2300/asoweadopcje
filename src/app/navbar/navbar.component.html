@@ -19,9 +19,9 @@
                 <li class="nav-item" routerLinkActive="active current">
                     <a routerLink="/contact" class="nav-link">Kontakt</a>
                 </li>
-                <li class="nav-item" routerLinkActive="active current" *ngIf="authService.isLoggedIn">
-                    <a routerLink="/admin" class="nav-link">Zarządzanie</a>
-                </li>
+                <!-- <li class="nav-item" routerLinkActive="active current" *ngIf="authService.isLoggedIn">
+                    <a routerLink="" class="nav-link">Zarządzanie</a>
+                </li> -->
             </ul>
 
             <ul class="navbar-nav ml-auto">
@@ -68,10 +68,10 @@
                 <li class="nav-item" routerLinkActive="active current">
                     <a routerLink="/contact" class="nav-link">Kontakt</a>
                 </li>
-
+<!-- 
                 <li class="nav-item" routerLinkActive="active current" *ngIf="authService.isLoggedIn">
-                    <a routerLink="/admin" class="nav-link">Zarządzanie</a>
-                </li>
+                    <a routerLink="" class="nav-link">Zarządzanie</a>
+                </li> -->
 
                 <li *ngIf="!authService.isLoggedIn" class="nav-item">
                     <a routerLink="/login" class="nav-link"><span class="glyphicon glyphicon-user" routerLinkActive="active current"></span> Zaloguj</a>

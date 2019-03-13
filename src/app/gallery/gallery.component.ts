@@ -21,10 +21,8 @@ export class GalleryComponent implements OnInit {
 
   constructor(
     private router: Router, 
-    private service: GalleryService, 
-    private db: AngularFirestore, 
-    private authService: AuthService,
-    private modalService: NgbModal ) {}
+    private service: GalleryService,
+    private authService: AuthService,) {}
   
   ngOnInit() {
     this.dogs$ = this.service.gallery$;
@@ -46,13 +44,5 @@ export class GalleryComponent implements OnInit {
     this.service.currentDog = dog;
 
     this.router.navigate([`/gallery/${ dog.dogName }`]);
-  }
-
-  openFormModal() {
-    const modalRef = this.modalService.open(ManageGalleryCardComponent);
-
-    modalRef.result.then((result) => {
-      console.log(result);
-    }).catch((error) => (console.log(error)));
   }
 }

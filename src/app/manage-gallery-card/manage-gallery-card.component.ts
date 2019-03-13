@@ -43,6 +43,7 @@ export class ManageGalleryCardComponent {
       upload.name = this.mainImg.name;
       upload.attach = this.dogName.charAt(0).toUpperCase() + this.dogName.slice(1).toLowerCase();
       upload.desc = this.desc;
+      
       this.fileManager.saveFileData(upload).then(() => {
         this.fileManager.pushUpload(upload);
 
