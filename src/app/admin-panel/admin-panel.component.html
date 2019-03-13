@@ -1,3 +1,11 @@
-<p>
-  admin-panel works!
-</p>
+<div *ngIf="user.isLoggedIn">
+  <div class="sidebar" id="mySidebar">
+    <span>Panel Admina</span>
+    <a (click)="openFormModal()">Dodaj Psiaka</a>
+    <a [routerLink]="['/schedule']" routerLinkActive="active current">Terminarz</a>
+  </div>
+
+  <div id="main">
+    <button class="openbtn" (click)="toggleSidebar()">&#9776;</button>
+  </div>
+</div>

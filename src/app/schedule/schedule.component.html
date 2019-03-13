@@ -1,0 +1,19 @@
+<div class="schedule">
+  <div class="schedule__date">
+    <div class="schedule__date__arrow" (click)="changeMonth(-1)">&lt;</div>
+    <div class="schedule__date__title">
+      {{ months[currentMonth] }}, {{ currentYear }}
+    </div>
+    <div class="schedule__date__arrow"  (click)="changeMonth(1)">&gt;</div>
+  </div>
+  <ul class="schedule__table">
+    <li *ngFor="let day of days;index as i" class="schedule__table__window" (click) = "openModal(i)">
+      <span>{{ i + 1 }}</span>
+    </li>
+  </ul>
+</div>
+
+<div class="modal-window" id="scheduleModal">
+  <div class="modal-window__content">lalala</div>
+  <div class="modal-window__close" (click) = "closeModal()">&times;</div>
+</div>
