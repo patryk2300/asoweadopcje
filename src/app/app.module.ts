@@ -21,12 +21,12 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { ManageGalleryCardComponent } from './manage-gallery-card/manage-gallery-card.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FileDropDirective } from './file-drop.directive';
 import { DisplayImageDirective } from './display-image.directive';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { FooterComponent } from './footer/footer.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 
 @NgModule({
@@ -59,6 +59,7 @@ import { FooterComponent } from './footer/footer.component';
       BrowserAnimationsModule,
       ReactiveFormsModule,
       NgbModule.forRoot(),
+      NgxMaterialTimepickerModule,
     ]
   ],
   providers: [FileDropDirective, DisplayImageDirective],

@@ -1,19 +1,79 @@
-<div class="schedule">
-  <div class="schedule__date">
-    <div class="schedule__date__arrow" (click)="changeMonth(-1)">&lt;</div>
-    <div class="schedule__date__title">
-      {{ months[currentMonth] }}, {{ currentYear }}
+<div class="schedule" id="schedule">
+  
+  <div class="schedule__sidebar">
+    <div class="schedule__sidebar__date">
+      <div style="cursor: pointer; text-align: start;" (click)="changeYear(-1)">&lt;</div>
+      
+      <span>{{ currentYear }}</span>
+      
+      <div style="cursor: pointer; text-align: end;" (click)="changeYear(1)">&gt;</div>
     </div>
-    <div class="schedule__date__arrow"  (click)="changeMonth(1)">&gt;</div>
-  </div>
-  <ul class="schedule__table">
-    <li *ngFor="let day of days;index as i" class="schedule__table__window" (click) = "openModal(i)">
-      <span>{{ i + 1 }}</span>
-    </li>
-  </ul>
-</div>
+    <div class="schedule__sidebar__months">
+      <div class="schedule__sidebar__months__month" 
+           attr.id="{{month}}" 
+           (mouseenter)="mouseEnter($event)" 
+           *ngFor="let month of months" 
+           (click)="changeMonth(month)">
 
-<div class="modal-window" id="scheduleModal">
-  <div class="modal-window__content">lalala</div>
-  <div class="modal-window__close" (click) = "closeModal()">&times;</div>
+        {{ month }}
+      </div>
+    </div>
+  </div>
+  
+  <div class="schedule__calendar">
+    <div class="schedule__table">
+      <div *ngFor="let dayName of daysOfWeek">
+        <span><strong>{{ dayName }}</strong></span>
+      </div>
+      
+      <li *ngFor="let day of days;index as i" 
+          class="schedule__table__window" 
+          attr.id="table-element{{i}}" 
+          (click) = "addEvent(i)">
+        <span>{{ i + 1 }}</span>
+
+      </li>
+    </div>
+  </div>
+
+  <div class="schedule__event-menu" id="event-menu">
+    <div class="schedule__event-menu__title">
+      <span id="title">
+        {{ currentDay + 1 }} {{ months[currentMonth] }}, {{ currentYear }}
+      </span>
+
+      <span id="exit-btn" (click)="exitEvent('event-menu')">
+        &times;
+      </span>
+    </div>
+  </div>
+
+  <div class="schedule__set-event" id="set-event">
+    <div class="schedule__set-event__content">
+      <span id="title">Ustaw wydarzenie</span>
+      <span id="exit-btn" (click)="exitEvent('set-event')">&times;</span>
+      <span style="position: absolute; left: 4%; top: 21%;">Czas</span>
+      <span style="position: absolute; left: 23%; top: 20%;">
+        <input [ngxTimepicker]="picker">
+        <ngx-material-timepicker #picker></ngx-material-timepicker>
+      </span>
+
+      <span style="position: absolute; left: 4%; top: 35%;">
+        Opis wydarzenia
+      </span>
+
+      <span style="position: absolute; left: 8%; top: 47%;">
+        <textarea class="form-control" rows="4"></textarea>
+      </span>
+
+      <span>
+        <span class="schedule__set-event__content__colors" (click) = "setColor('color1', 'green')" id="color1"></span>
+        <span class="schedule__set-event__content__colors" style="left: 17%; background-color: yellow" id="color2" (click) = "setColor('color2', 'yellow')"></span>
+        <span class="schedule__set-event__content__colors" style="left: 31%; background-color: blue" id="color3" (click) = "setColor('color3', 'blue')"></span>
+        <span class="schedule__set-event__content__colors" style="left: 45%; background-color: pink" id="color4" (click) = "setColor('color4', 'pink')"></span>
+        <span class="schedule__set-event__content__colors" style="left: 59%; background-color: chocolate" id="color5" (click) = "setColor('color5', 'chocolate')"></span>
+      </span>
+      <button class="btn btn-primary" id="save-btn">Dodaj</button>
+    </div>
+  </div>
 </div>
