@@ -9,13 +9,17 @@
       <div style="cursor: pointer; text-align: end;" (click)="changeYear(1)">&gt;</div>
     </div>
     <div class="schedule__sidebar__months">
-      <div class="schedule__sidebar__months__month" 
-           attr.id="{{month}}" 
-           (mouseenter)="mouseEnter($event)" 
+      <div class="schedule__sidebar__months__month center" 
+           attr.id="{{ month }}"
            *ngFor="let month of months" 
-           (click)="changeMonth(month)">
+           (click)="changeMonth(month)"
+           [class.active]="month === months[currentMonth]">
 
-        {{ month }}
+        <span>{{ month }}</span>
+        <span attr.id="{{ month }}-event-amount" 
+              style="position:absolute; right: 15px; width: 25px; background-color: hsl(220, 80%, 60%);border-radius: 30px; color: black;" *ngIf="eventsAmount[getIndexOfMonth(month)]">
+              {{ eventsAmount[getIndexOfMonth(month)] }}</span>
+      
       </div>
     </div>
   </div>
@@ -27,53 +31,73 @@
       </div>
       
       <li *ngFor="let day of days;index as i" 
-          class="schedule__table__window" 
+          class="schedule__table__window center" 
           attr.id="table-element{{i}}" 
-          (click) = "addEvent(i)">
-        <span>{{ i + 1 }}</span>
-
+          (click) = "chooseDay(i)">
+        <span style="z-index: 1">{{ i + 1 }}</span>
+        <span *ngIf="days[i]"
+          style="width:100%; height:100%;border-radius:100%; position: absolute;"
+          [ngStyle]="{'background-color': days[i].color}"></span>
       </li>
     </div>
   </div>
 
-  <div class="schedule__event-menu" id="event-menu">
+  <div class="schedule__event-menu" id="event-menu" hidden>
     <div class="schedule__event-menu__title">
-      <span id="title">
+      <div id="title">
         {{ currentDay + 1 }} {{ months[currentMonth] }}, {{ currentYear }}
-      </span>
+      </div>
 
-      <span id="exit-btn" (click)="exitEvent('event-menu')">
+      <div id="exit-btn" (click)="exitEvent('event-menu')">
         &times;
-      </span>
+      </div>
+    </div>
+
+    <div class="schedule__event-menu__table">
+      <div class="schedule__event-menu__table__event" *ngFor="let event of eventsInDay;index as i">
+        <div class="center" style="width: 20%; min-height: 100px; height: 100%; border-right: 2px solid lightgray;">
+          {{ i }}:00
+        </div>
+        <div *ngIf="event" style="display: block; float:left; width: 80%; height: 100%; top: 0;">
+          <div *ngFor="let item of event" [ngStyle]="{'background-color': item.color}">
+            {{ item.eventTime }}  {{ item.eventDesc }}
+          </div>
+        </div>
+          
+      </div>
     </div>
   </div>
 
-  <div class="schedule__set-event" id="set-event">
+  <div class="schedule__set-event" id="set-event" (window:resize)="onResize()" hidden>
     <div class="schedule__set-event__content">
-      <span id="title">Ustaw wydarzenie</span>
-      <span id="exit-btn" (click)="exitEvent('set-event')">&times;</span>
+      <div class="center" style="position: absolute; width: 100%; height: 17%;">
+          <span id="title">Ustaw wydarzenie</span>
+          <span id="exit-btn" (click)="exitEvent('set-event')">&times;</span>
+      </div>
+      
       <span style="position: absolute; left: 4%; top: 21%;">Czas</span>
       <span style="position: absolute; left: 23%; top: 20%;">
-        <input [ngxTimepicker]="picker">
-        <ngx-material-timepicker #picker></ngx-material-timepicker>
+          <input aria-label="24hr format" [ngxTimepicker]="fullTime" [format]="24" [(ngModel)]="timeValue" readonly>
+          <ngx-material-timepicker #fullTime></ngx-material-timepicker>
       </span>
 
       <span style="position: absolute; left: 4%; top: 35%;">
         Opis wydarzenia
       </span>
+      
 
-      <span style="position: absolute; left: 8%; top: 47%;">
-        <textarea class="form-control" rows="4"></textarea>
+      <span style="position: absolute; left: 5.5%; top: 47%;">
+        <textarea class="form-control" rows="4" [(ngModel)]="eventDesc"></textarea>
       </span>
 
-      <span>
-        <span class="schedule__set-event__content__colors" (click) = "setColor('color1', 'green')" id="color1"></span>
-        <span class="schedule__set-event__content__colors" style="left: 17%; background-color: yellow" id="color2" (click) = "setColor('color2', 'yellow')"></span>
-        <span class="schedule__set-event__content__colors" style="left: 31%; background-color: blue" id="color3" (click) = "setColor('color3', 'blue')"></span>
-        <span class="schedule__set-event__content__colors" style="left: 45%; background-color: pink" id="color4" (click) = "setColor('color4', 'pink')"></span>
-        <span class="schedule__set-event__content__colors" style="left: 59%; background-color: chocolate" id="color5" (click) = "setColor('color5', 'chocolate')"></span>
-      </span>
-      <button class="btn btn-primary" id="save-btn">Dodaj</button>
+      
+      <span class="schedule__set-event__content__colors" (click) = "setColor('color1', 'green')" id="color1"></span>
+      <span class="schedule__set-event__content__colors" style="left: 17%; background-color: yellow" id="color2" (click) = "setColor('color2', 'yellow')"></span>
+      <span class="schedule__set-event__content__colors" style="left: 31%; background-color: blue" id="color3" (click) = "setColor('color3', 'blue')"></span>
+      <span class="schedule__set-event__content__colors" style="left: 45%; background-color: pink" id="color4" (click) = "setColor('color4', 'pink')"></span>
+      <span class="schedule__set-event__content__colors" style="left: 59%; background-color: chocolate" id="color5" (click) = "setColor('color5', 'chocolate')"></span>
+      
+      <button class="btn btn-primary" id="save-btn" (click)="addEvent()">Dodaj</button>
     </div>
   </div>
 </div>
