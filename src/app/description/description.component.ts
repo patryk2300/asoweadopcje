@@ -37,14 +37,13 @@ export class DescriptionComponent implements OnInit {
   }
   
   changeImage(dir: number){
-    
     if(dir === 1 && this.index + dir < this.imgs.length)
       this.index += dir;
-    else if (dir === -1 && this.index + dir > this.imgs.length)
+    else if (dir === -1 && this.index + dir >= 0)
       this.index += dir;
     else if (dir === 1)
       this.index = 0;
-    else
+    else if (dir === -1)
       this.index = this.imgs.length - 1;
 
       this.image = this.imgs[this.index].downloadUrl
@@ -55,7 +54,9 @@ export class DescriptionComponent implements OnInit {
     this.display = 'block'; 
     this.currentUrl = downloadUrl;
     this.image = downloadUrl;
-    console.log(downloadUrl)
   }
 
+  onKeyDown(event){
+    console.log(event);
+  }
 }
