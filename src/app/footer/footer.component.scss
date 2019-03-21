@@ -1,0 +1,57 @@
+a:link {color: black;}
+a:visited {color: black;} 
+a:hover {color: black; text-decoration: none;}   
+a:active {color: black;}
+a {
+    height: 100%;
+}
+
+.footer{
+    margin: 0 auto;
+    position: relative;
+    width: 100% !important;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    max-height: 100px;
+    background-color: #343a40;
+}
+
+.footer__icon{
+    font-size: 36px;
+    width: 31px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    cursor: pointer;
+    transition: .3s ease-in;
+}
+
+.footer__icon__facebook{
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    background-color: white;
+    color: hsl(210, 100%, 40%);
+    
+    transition: .3s ease-in;
+}
+
+.footer__icon__facebook:hover{
+    transition: .3s ease-out;
+    color: hsl(220, 100%, 30%);
+}
+
+.footer__icon__instagram{
+    background: linear-gradient( #400080, transparent), linear-gradient(200deg, #d047d1, #ff0000, #ffff00);
+    position: absolute;
+    top: 30px;
+    right: 70px;
+}
+
+.footer__icon__instagram:hover{
+    transition: .3s ease-out;
+    color: hsl(20, 0%, 30%);
+}
