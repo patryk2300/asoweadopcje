@@ -1,26 +1,23 @@
-<div style="height: 56px;">
-    <!-- header -->
-    <navbar></navbar>
-</div>
 
-<div class="background-image"></div>
+<!-- header -->
+<navbar></navbar>
 
-<div class="wrapper">  
-  <div class="content">
-    
-    <!-- if logged in then display background and sidebar -->
-    <div *ngIf="user.isLoggedIn" style="width: 1000px; height: 50px;">
+<div id="page-container">
+  
+  <div id="content-wrap">
+    <div *ngIf="user.isLoggedIn" style="width: 100%; height: 50px; padding-top: 56px; z-index: 1;">
         <!-- sidebar -->
         <admin-panel></admin-panel>
     </div>
       
       <!-- main content -->      
       <router-outlet ></router-outlet>
-
+      <!-- if logged in then display background and sidebar -->
+      
   </div>
+  <div id="background"></div>
+  <!-- footer -->
+  <footer id="footer">
+    <app-footer></app-footer>
+  </footer>
 </div>
-
-<!-- footer -->
-<footer class="footer">
-  <app-footer></app-footer>
-</footer>
