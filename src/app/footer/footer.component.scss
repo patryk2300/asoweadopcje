@@ -6,14 +6,15 @@ a {
     height: 100%;
 }
 
-.footer{
-    margin: 0 auto;
+p{
+    margin-bottom: 0px;
+    color: hsl(300, 0%, 50%);
+}
+
+.footer__content{
     position: relative;
     width: 100% !important;
     height: 100%;
-    position: absolute;
-    bottom: 0;
-    max-height: 100px;
     background-color: #343a40;
 }
 

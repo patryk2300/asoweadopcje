@@ -1,3 +1,40 @@
+.background-image{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index:-2;
+}
+.background-image:after {
+    content: ' ';
+    z-index: -1;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0.6;
+    background-image: url(../assets/images/background.png);
+  }
+
+.wrapper{
+    min-height: 80%;
+    height: 90%;
+}
+
+.content{
+    height: 100%;
+    width: 100%;
+}
+
+.footer{
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
 .logo-image {
     width: 10%;
     border-radius: 50%;
@@ -10,7 +47,7 @@
 
 #background {
     position: fixed;
-    background-image: url('../assets/images/background.png');
+    // background-image: url('../assets/images/background.png');
     background-repeat: repeat;
     width: 100%;
     height: 100%;
