@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { ManageGalleryCardComponent } from '../manage-gallery-card/manage-gallery-card.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HomeImageUploadComponent } from '../home-image-upload/home-image-upload.component';
 
 @Component({
   selector: 'admin-panel',
@@ -27,11 +28,14 @@ export class AdminPanelComponent {
     this.openedSidebar = !this.openedSidebar;
   }
 
-  openFormModal() {
-    const modalRef = this.modalService.open(ManageGalleryCardComponent);
+  openFormModal(path: string) {
+    let modalRef;
 
-    modalRef.result.then((result) => {
-      console.log(result);
-    }).catch((error) => (console.log(error)));
+    if(path === 'gallery')
+      modalRef = this.modalService.open(ManageGalleryCardComponent);
+    else if(path === 'home')
+      modalRef = this.modalService.open(HomeImageUploadComponent);
+    
+    modalRef.result.catch((error) => (console.log(error)));
   }
 }

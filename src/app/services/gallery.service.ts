@@ -16,11 +16,11 @@ export class GalleryService {
   
   constructor(private db: AngularFirestore, private storage: AngularFireStorage, private fileManager: FileManagerService) {
     this.galleryRef = this.db.collection(this.basePath);
-    this.gallery$ = this.get();
+    this.gallery$ = this.get(this.basePath);
   }
 
-    get(){
-      return this.db.collection('/gallery')
+    get(path: string){
+      return this.db.collection(path)
         .snapshotChanges()
         .pipe(
           map((actions) => {

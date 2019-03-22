@@ -15,21 +15,14 @@ export class FileManagerService {
 
   task: AngularFireUploadTask;
 
-  percentage: Observable<number>;
-
-  snapshot: Observable<any>;
-
-  downloadUrl: string;
-
   constructor(private db: AngularFirestore, private storage: AngularFireStorage) {}
 
   private basePath: string = 'gallery';
+  private baseMenuPath: string = 'main-menu';
 
   pushUpload(upload: Upload){
 
     this.task = this.storage.upload(`${ this.basePath }/${ upload.attach }/${upload.file.name}`, upload.file)
-
-    this.percentage = this.task.percentageChanges();
 
     this.task.then(() => {
       this.storage.ref(`${ this.basePath }/${ upload.attach }/${upload.file.name}`)
@@ -47,6 +40,26 @@ export class FileManagerService {
     });
   }
 
+  pushUploadMainMenu(dogName: string, imgDesc: string, file: File){
+    this.db.collection(this.basePath).doc(dogName).get()
+        .subscribe(document => {
+          if(document.exists){
+            this.task = this.storage.upload(`${ this.baseMenuPath }/${ dogName }`, file);
+
+            this.task.then(() => {
+              this.storage.ref(`${ this.baseMenuPath }/${ dogName }`).getDownloadURL()
+                .subscribe(url => {
+                  this.saveMainMenuUrl(dogName, url, imgDesc);
+                })
+            })
+          }
+          else
+            return false;
+
+        });
+
+  }
+
   saveFileData(upload: Upload){
     let obj = this.createFbObject();
 
@@ -62,7 +75,7 @@ export class FileManagerService {
         .update({
           mainImg: {
             downloadUrl: upload.url, 
-            imgName: upload.name 
+            imgName: upload.name
           }
       });
 
@@ -74,6 +87,15 @@ export class FileManagerService {
         images: firebase.firestore.FieldValue.arrayUnion({ downloadUrl: upload.url, imgName: upload.name })
       }, {merge: true});
     }
+  }
+  
+  saveMainMenuUrl(dogName: string, url: string, imgDesc: string){
+    this.db.collection(this.baseMenuPath).doc(`${ dogName }`)
+        .set({
+            dogName: dogName,
+            imgUrl: url, 
+            imgDesc: imgDesc
+          });
   }
 
   createFbObject(){
