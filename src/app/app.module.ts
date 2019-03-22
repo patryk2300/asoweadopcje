@@ -29,6 +29,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 import { FileDropDirective } from './file-drop.directive';
 import { HomeImageUploadComponent } from './home-image-upload/home-image-upload.component';
+import { NewsComponent } from './news/news.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { HomeImageUploadComponent } from './home-image-upload/home-image-upload.
     ScheduleComponent,
     FooterComponent,
     HomeImageUploadComponent,
+    NewsComponent,
   ],
   imports: [
     [

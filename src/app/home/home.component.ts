@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GalleryService } from '../services/gallery.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'home',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  
+  images$: Observable<any>;
+  
+  path: string = 'main-menu';
 
-  constructor() { }
+  constructor(private galleryService: GalleryService) { }
 
   ngOnInit() {
+    this.images$ = this.galleryService.get(this.path);
   }
 
 }
