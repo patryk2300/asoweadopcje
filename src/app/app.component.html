@@ -1,23 +1,21 @@
-<!-- header -->
-<navbar></navbar>
+<div id="page-container">
+  <!-- header -->
+  <navbar></navbar>
 
-<!-- if logged out then display only background -->
-<div *ngIf="!user.isLoggedIn" id="background"></div>
-
-<!-- if logged in then display background and sidebar -->
-<div *ngIf="user.isLoggedIn" style="width: 1000px; height: 50px;">
-  <!-- sidebar -->
-  <admin-panel></admin-panel>
+  <div id="content-wrap">
   
-  <!-- background -->
+  <div *ngIf="user.isLoggedIn" style="position: absolute;left: 0;top: 56px;">
+    <!-- sidebar -->
+    <admin-panel></admin-panel>
+  </div>
+  <!-- main content -->      
+  <router-outlet ></router-outlet>
+  <!-- if logged in then display background and sidebar -->
+      
+  </div>
   <div id="background"></div>
+  <!-- footer -->
+  <footer id="footer">
+    <app-footer></app-footer>
+  </footer>
 </div>
-
-<!-- main content -->
-<div>
-  <router-outlet id="spacing"></router-outlet>
-</div>
-
-<!-- footer -->
-
-<app-footer>Test</app-footer>

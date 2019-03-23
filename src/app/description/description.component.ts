@@ -3,7 +3,7 @@ import { GalleryService } from '../services/gallery.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-description',
+  selector: 'description',
   templateUrl: './description.component.html',
   styleUrls: ['./description.component.scss']
 })
@@ -21,19 +21,13 @@ export class DescriptionComponent implements OnInit {
   constructor(private service: GalleryService, private router: Router) { }
 
   ngOnInit() {
-    if(this.service.currentDog){
-      this.dog = this.service.currentDog;
-      this.imgs = this.dog.images;
-    
-    } else{
-      let name = this.router.url.replace('/gallery/','');
-      this.dog = this.service.getDoc(name)
-        .valueChanges()
-        .subscribe((value) => {
-          this.dog = value;
-          this.imgs = this.dog.images;
-        });
-    }
+    let name = this.router.url.replace('/gallery/','');
+    this.dog = this.service.getDoc(name)
+      .valueChanges()
+      .subscribe((value) => {
+        this.dog = value;
+        this.imgs = this.dog.images;
+      });
   }
   
   changeImage(dir: number){

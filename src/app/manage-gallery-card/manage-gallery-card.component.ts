@@ -1,10 +1,7 @@
-import { Component, Inject } from '@angular/core';
-import { GalleryService } from '../services/gallery.service';
+import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FileManagerService } from '../services/file-manager.service';
-import { AngularFireStorage } from '@angular/fire/storage';
 import { Upload } from '../file-upload/upload';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'manage-gallery-card',

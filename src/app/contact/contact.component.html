@@ -1,0 +1,50 @@
+<div id="background-img">
+</div>
+<div class="grid">
+  <div id="map"
+      leaflet
+      [leafletOptions]="options">
+
+      <div *ngIf="showLayer" [leafletLayer]="marker"></div>
+  </div>
+  <div class="contact">
+    <div class="contact__info">
+      <div class="contact__info__title">
+        Poznaj nas !
+      </div>
+      <div class="contact__info__contacts">
+          
+        <span class="contact__info__icon">
+          <i class="fas fa-at"></i>
+          <span>mail@mail.com</span>
+        </span>
+        
+        <span class="contact__info__icon">
+          <i class="fas fa-phone"></i>
+          <span>+48 123456789</span>
+        </span>
+        
+        <span class="contact__info__icon">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>ul. Paluch 2, 02-147 Warszawa</span>
+        </span>  
+
+      </div>
+    </div>
+  </div>
+  <div class="email">
+      
+    <div style="font-size: 2.2em; margin-bottom: 10px;">
+      Napisz do nas
+    </div>
+    <!-- <div style="width: 50%;"> -->
+    <label for="name">Imię</label>
+    <input type="text" id="name" class="form-control">
+
+    <label for="email-contact" style="margin-top: 10px;">Wiadomość</label>
+    <textarea name="email-contact" id="email-contact" cols="10" rows="5" class="form-control"></textarea>
+    <!-- </div> -->
+    <button class="btn btn-primary float-right" style="margin-top: 10px;">Wyślij</button>
+  </div>
+
+</div>

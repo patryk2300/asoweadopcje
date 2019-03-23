@@ -1,0 +1,82 @@
+// a:link {color: black;}
+// a:visited {color: black;} 
+// a:hover {color: black; text-decoration: none;}   
+// a:active {color: black;}
+// a {
+//     height: 100%;
+// }
+
+p{
+    margin-bottom: 0px;
+    color: hsl(300, 0%, 50%);
+}
+
+.footer__content{
+    position: relative;
+    width: 100% !important;
+    height: 100%;
+    background-color: #343a40;
+}
+
+.footer__logo{
+    color: white;
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    font-size: 25px;
+}
+
+.footer__icon{
+    color: black;
+    font-size: 36px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    cursor: pointer;
+    transition: .3s ease-in;
+}
+
+.footer__icon__facebook{
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    background-color: white;
+    color: hsl(210, 100%, 40%);
+    
+    transition: .3s ease-in;
+}
+
+.footer__icon__facebook:hover{
+    transition: .3s ease-out;
+    transform: scale(1.5);
+}
+
+.footer__icon__instagram{
+    background: linear-gradient( #400080, transparent), linear-gradient(200deg, #d047d1, #ff0000, #ffff00);
+    position: absolute;
+    top: 30px;
+    right: 70px;
+}
+
+.footer__icon__instagram:hover{
+    transition: .3s ease-out;
+    transform: scale(1.5);
+}
+
+.footer__icon__github{
+    position: absolute;
+    top: 30px;
+    right: 120px;
+    background-color: transparent;
+    color: white;
+    
+    transition: .3s ease-in;
+}
+
+.footer__icon__github:hover{
+    transition: .3s ease-out;
+    transform: scale(1.5);
+}

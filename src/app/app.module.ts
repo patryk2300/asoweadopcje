@@ -28,6 +28,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 import { FileDropDirective } from './file-drop.directive';
+import { HomeImageUploadComponent } from './home-image-upload/home-image-upload.component';
+import { NewsComponent } from './news/news.component';
 
 
 @NgModule({
@@ -45,6 +47,8 @@ import { FileDropDirective } from './file-drop.directive';
     FileDropDirective,
     ScheduleComponent,
     FooterComponent,
+    HomeImageUploadComponent,
+    NewsComponent,
   ],
   imports: [
     [
@@ -65,7 +69,8 @@ import { FileDropDirective } from './file-drop.directive';
   providers: [FileDropDirective],
   bootstrap: [AppComponent],
   entryComponents: [
-    ManageGalleryCardComponent
+    ManageGalleryCardComponent,
+    HomeImageUploadComponent
   ]
 })
 export class AppModule { }

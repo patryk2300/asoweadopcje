@@ -1,3 +1,34 @@
+#background {
+    position: fixed;
+    background-image: url('../assets/images/background.png');
+    background-repeat: repeat;
+    min-width: 100%;
+    min-height: 100%;
+    opacity : 0.4;
+    z-index: -1;
+}
+
+#page-container{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 56px 1fr 100px;
+    min-height: 100%;
+}
+
+#content-wrap{
+    margin: 0 auto;
+    height: 100%;
+    max-width: 80rem;
+    width: 100%;
+}
+
+#footer{
+    align-items: end;
+    width: 100%;
+    min-width: 100%;
+    height: 100px;
+}
+
 .logo-image {
     width: 10%;
     border-radius: 50%;
@@ -10,7 +41,7 @@
 
 #background {
     position: fixed;
-    background-image: url('../assets/images/background.png');
+    // background-image: url('../assets/images/background.png');
     background-repeat: repeat;
     width: 100%;
     height: 100%;
