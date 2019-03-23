@@ -1,0 +1,87 @@
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    height: 50%;
+    width: 100%;
+}
+#map{
+    height: 100%;
+}
+
+#background-img{
+    width: 100%;
+    height: 50%;
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/pracainzynierska2.appspot.com/o/banner%2Fbanner.jpg?alt=media&token=4f98802a-64bd-4715-ba71-ced6f4067bb5'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center;
+}
+
+.contact{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -25px;
+}
+
+.contact__info{
+    // width: 350px;
+    // height: 250px;
+}
+
+.contact__info__title{
+    font-size: 3em;    
+    height: 70px;
+    width: fit-content;
+}
+.contact__info__contacts{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    height: 150px;
+}
+
+.contact__info__icon{
+    font-size: 1.3em;
+    display: flex;
+    align-items: center;
+}
+
+.contact__info__icon i{
+    margin-right: 20px;
+}
+
+.contact__info__icon i,span{
+    font-size: 0.75em;
+}
+
+.email{
+    background-color: lightgray;
+    padding: 30px;
+    padding-left: 10%;
+    height: 100%;
+}
+
+@media(max-width: 1024px){
+    .grid{
+        display: block;
+        height: 1200px;
+        width: 100%;
+    }
+    #background-img{
+        height: 400px;
+    }
+    #map{
+        width: 100%;
+        height: 400px;
+    }
+    .contact{
+        margin: 0 auto;
+        height: 400px;
+    }
+    .email{
+        height: 400px;
+    }
+}
