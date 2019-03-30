@@ -10,7 +10,7 @@
 </div>    
 <form class="card" enctype="multipart/form-data" #f="ngForm" (ngSubmit)="onSubmit(f)">
   <div class="modal-body">
-      <label for="carousel-dog-name">Imię</label>
+      <label for="carousel-dog-name">Tytuł</label>
       <input type="text" 
              name="dogName" 
              id="carousel-dog-name" 
@@ -27,14 +27,14 @@
                 required 
                 ngModel></textarea>
       
-      <label for="image" class="image__upload center">
+      <!-- <label for="image" class="image__upload center">
         <span style="padding-right: 5px;">
           Wgraj zdjęcie
         </span>
         <i class="fas fa-download"></i>
       </label>
       
-      <p class="float-left" 
+     <p class="float-left" 
          style="font-size: 1.5rem; width: 60%;padding-top: 25px; padding-left: 5%;"
          *ngIf="file">
          {{ file.name }}
@@ -44,7 +44,11 @@
              id="image" 
              type="file" 
              (change)="detectUpload($event.target.files[0])" 
-             hidden>
+             hidden> -->
+      
+      <div style="width: 100%;">
+        <file-upload (selectedEvent)="detectUpload($event)"></file-upload>
+      </div>
       
       <button class="btn btn-primary float-right">Dodaj</button>
     </div>

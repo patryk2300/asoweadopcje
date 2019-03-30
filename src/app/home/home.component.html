@@ -24,5 +24,31 @@
         Aktualności
     </div>
 
-    <news></news>
+    <div class="album py-5 bg-light" *ngFor="let news of news$ | async">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                      <img src="{{ news.mainImg.imgUrl }}" width="100%" height="200px" alt="" style="background-size: cover; background-position: center;object-fit: cover;">
+                      <p class="card-text">
+                        <strong>
+                          {{ news.title }}
+                        </strong>
+                      </p>
+                      <p class="card-text">
+                          {{ news.shortDesc }}
+                      </p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                          <button class="btn btn-sm btn-outline-secondary">Zobacz</button>
+                          <button class="btn btn-sm btn-outline-secondary">Edytuj</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
