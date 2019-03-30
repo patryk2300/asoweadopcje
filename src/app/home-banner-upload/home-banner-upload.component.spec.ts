@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeImageUploadComponent } from './home-image-upload.component';
+import { HomeBannerUploadComponent } from './home-banner-upload.component';
 
-describe('HomeImageUploadComponent', () => {
-  let component: HomeImageUploadComponent;
-  let fixture: ComponentFixture<HomeImageUploadComponent>;
+describe('HomeBannerUploadComponent', () => {
+  let component: HomeBannerUploadComponent;
+  let fixture: ComponentFixture<HomeBannerUploadComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeImageUploadComponent ]
+      declarations: [ HomeBannerUploadComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeImageUploadComponent);
+    fixture = TestBed.createComponent(HomeBannerUploadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

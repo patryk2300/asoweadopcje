@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { ManageGalleryCardComponent } from '../manage-gallery-card/manage-gallery-card.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { HomeImageUploadComponent } from '../home-image-upload/home-image-upload.component';
+import { HomeBannerUploadComponent } from '../home-banner-upload/home-banner-upload.component';
+import { NewsUploadComponent } from '../news-upload/news-upload.component';
 
 @Component({
   selector: 'admin-panel',
@@ -34,7 +35,9 @@ export class AdminPanelComponent {
     if(path === 'gallery')
       modalRef = this.modalService.open(ManageGalleryCardComponent);
     else if(path === 'home')
-      modalRef = this.modalService.open(HomeImageUploadComponent);
+      modalRef = this.modalService.open(HomeBannerUploadComponent);
+    else if(path === 'news')
+      modalRef = this.modalService.open(NewsUploadComponent);
     
     modalRef.result.catch((error) => (console.log(error)));
   }

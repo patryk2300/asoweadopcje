@@ -49,9 +49,11 @@
     position: relative;
     height: 100%;
     cursor: pointer;
+    transition: 0.3s ease-in;
 }
 
 .schedule__sidebar__months__month:hover {
+    transition: 0.3 ease-out;
     background-color: hsla(230, 100%, 75%, 1.0) !important;
     color: hsla(200, 100%, 100%, 1.0);
 }
@@ -73,7 +75,7 @@
 
 .schedule__table{
     width: 60%;
-    height: 50%;
+    height: 60%;
     display: grid;
     align-items: center;
     text-align: center;

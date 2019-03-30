@@ -57,6 +57,18 @@ export class GalleryService {
           this.db.collection(this.basePath).doc(item.id).delete();
         })
       }
+    
+    removeBanner(dog: string){
+      const path: string = 'main-menu'
+
+      this.storage.ref(`${path}/${dog}.jpg`)
+        .delete()
+        .toPromise()
+        .then(() => {
+          this.db.collection(path).doc(dog).delete();
+        });
+        
+    }
 
     updateName(item, name){
       let newItem = JSON.parse(JSON.stringify(item.name));

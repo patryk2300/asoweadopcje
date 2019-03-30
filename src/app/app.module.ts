@@ -6,6 +6,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -27,9 +29,12 @@ import { ManageGalleryCardComponent } from './manage-gallery-card/manage-gallery
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
+
 import { FileDropDirective } from './file-drop.directive';
-import { HomeImageUploadComponent } from './home-image-upload/home-image-upload.component';
+import { HomeBannerUploadComponent } from './home-banner-upload/home-banner-upload.component';
 import { NewsComponent } from './news/news.component';
+import { ContactComponent } from './contact/contact.component';
+import { NewsUploadComponent } from './news-upload/news-upload.component';
 
 
 @NgModule({
@@ -47,8 +52,10 @@ import { NewsComponent } from './news/news.component';
     FileDropDirective,
     ScheduleComponent,
     FooterComponent,
-    HomeImageUploadComponent,
+    HomeBannerUploadComponent,
     NewsComponent,
+    ContactComponent,
+    NewsUploadComponent,
   ],
   imports: [
     [
@@ -64,13 +71,15 @@ import { NewsComponent } from './news/news.component';
       ReactiveFormsModule,
       NgbModule.forRoot(),
       NgxMaterialTimepickerModule,
+      LeafletModule.forRoot()
     ]
   ],
   providers: [FileDropDirective],
   bootstrap: [AppComponent],
   entryComponents: [
     ManageGalleryCardComponent,
-    HomeImageUploadComponent
+    HomeBannerUploadComponent,
+    NewsUploadComponent
   ]
 })
 export class AppModule { }

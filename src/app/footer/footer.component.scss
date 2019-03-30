@@ -6,6 +6,8 @@
 //     height: 100%;
 // }
 
+$top-alignment: 10px;
+
 p{
     margin-bottom: 0px;
     color: hsl(300, 0%, 50%);
@@ -21,7 +23,7 @@ p{
 .footer__logo{
     color: white;
     position: absolute;
-    top: 30px;
+    top: $top-alignment;
     left: 20px;
     font-size: 25px;
 }
@@ -41,7 +43,7 @@ p{
 
 .footer__icon__facebook{
     position: absolute;
-    top: 30px;
+    top: $top-alignment;
     right: 20px;
     background-color: white;
     color: hsl(210, 100%, 40%);
@@ -57,7 +59,7 @@ p{
 .footer__icon__instagram{
     background: linear-gradient( #400080, transparent), linear-gradient(200deg, #d047d1, #ff0000, #ffff00);
     position: absolute;
-    top: 30px;
+    top: $top-alignment;
     right: 70px;
 }
 
@@ -68,7 +70,7 @@ p{
 
 .footer__icon__github{
     position: absolute;
-    top: 30px;
+    top: $top-alignment;
     right: 120px;
     background-color: transparent;
     color: white;

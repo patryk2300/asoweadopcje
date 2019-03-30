@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Upload } from '../file-upload/upload';
 import { AngularFireStorage, AngularFireUploadTask, AngularFireStorageReference } from '@angular/fire/storage';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore'; 1
 import * as firebase from 'firebase';
 
 
@@ -54,7 +53,7 @@ export class FileManagerService {
             })
           }
           else
-            return false;
+            alert('Takiego psa nie ma w bazie ! (Spójrz w zakładkę Psiaki)');
 
         });
 

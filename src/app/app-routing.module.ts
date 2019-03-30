@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { DescriptionComponent } from './description/description.component';
 import { ManageGalleryCardComponent } from './manage-gallery-card/manage-gallery-card.component';
 import { ScheduleComponent } from './schedule/schedule.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'manage-gallery', component: ManageGalleryCardComponent },
   { path: 'manage-gallery/:name', component: ManageGalleryCardComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'contact', component: ContactComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 

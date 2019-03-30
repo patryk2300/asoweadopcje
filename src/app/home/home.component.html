@@ -1,19 +1,28 @@
-<div style="width: 100%; text-align: center; background-color: lightgray; border-radius: 20px; padding-top: 20px; margin-top: 20px; padding-bottom: 30px;">
-    <ngb-carousel class="mrg-bt bg-dark" style="width: 1200px; margin: 0 auto; margin-top: 50px;">
+<div style="width: 100%; text-align: center; border-radius: 20px;">
+    <ngb-carousel class="bg-dark" style="width: 100%; height: auto; margin: 0 auto; margin-top: 0px; position: relative;">
         <ng-template *ngFor="let image of images$ | async" ngbSlide>
-            <div [style.backgroundImage]="'url('+image.imgUrl+')'" style="width: 1200px;height: 300px; background-repeat: no-repeat;  background-position: center; background-size:auto; object-fit: none; overflow: hidden;">
-            </div>  
+        <div [style.backgroundImage]="'url('+image.imgUrl+')'"
+            style="width:100%; height: 500px; background-repeat: no-repeat;  background-position: center; background-size:cover; overflow: hidden; cursor: pointer;"
+            (click)="navigate(image.dogName)">
+        </div>  
+        
         <div class="carousel-caption">
             <h3>{{ image.dogName }}</h3>
             <p>{{ image.imgDesc }}</p>
         </div>
+
+        <span style="position:absolute; right: 10px; top: 10px; z-index: 1100; cursor: pointer;">
+            <i 
+            style="color: black; font-size: 24px;" 
+            class="far fa-trash-alt" 
+            (click)="remove(image.dogName)"></i>
+        </span>
         </ng-template>
     </ngb-carousel>
     
-     
-   
-    <div class="mrg-bt" style="font-size: 3em;">
+    <div style="font-size: 3em; height: 500px; background-color: lightgray; display: flex; align-items: center; justify-content: center;">
         Aktualności
     </div>
+
     <news></news>
 </div>
