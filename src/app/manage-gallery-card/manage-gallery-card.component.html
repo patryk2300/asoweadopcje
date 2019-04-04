@@ -43,7 +43,7 @@
             class="form-control"></textarea>
         </div>
         <label for="images"> Zdjęcia do galerii</label>
-        <file-upload></file-upload>
+        <file-upload (selectedEvent)="fileList = $event"></file-upload>
 
     </div>
 

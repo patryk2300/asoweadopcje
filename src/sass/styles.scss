@@ -13,3 +13,7 @@ html, body {
     margin: 0px; 
     padding: 0px; 
     font-family: $font-stack; }
+
+textarea {
+    resize: none;
+}

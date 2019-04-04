@@ -3,7 +3,7 @@
         <ng-template *ngFor="let image of images$ | async" ngbSlide>
         <div [style.backgroundImage]="'url('+image.imgUrl+')'"
             style="width:100%; height: 500px; background-repeat: no-repeat;  background-position: center; background-size:cover; overflow: hidden; cursor: pointer;"
-            (click)="navigate(image.dogName)">
+            (click)="navigate('gallery', image.dogName)">
         </div>  
         
         <div class="carousel-caption">
@@ -25,24 +25,45 @@
     </div>
 
     <div class="album py-5 bg-light" *ngFor="let news of news$ | async">
+        <form action="">
             <div class="container">
               <div class="row">
                 <div class="col-md-4">
                   <div class="card mb-4 shadow-sm">
                     <div class="card-body">
-                      <img src="{{ news.mainImg.imgUrl }}" width="100%" height="200px" alt="" style="background-size: cover; background-position: center;object-fit: cover;">
+                      <img src="{{ news.mainImg.downloadUrl }}" 
+                           width="100%" 
+                           height="200px" 
+                           alt="">
+                      
                       <p class="card-text">
-                        <strong>
-                          {{ news.title }}
-                        </strong>
+                          <span *ngIf="!toEdit">
+                              <strong>
+                                {{ news.title }}
+                              </strong>
+                          </span>
+                          <span *ngIf="toEdit">
+                              <input type="text" value="{{ news.title }}" class="form-control">
+                          </span>
+                    </p>
+                      <p class="card-text">
+                          <span *ngIf="!toEdit">
+                              {{ news.shortDesc }}
+                          </span>
                       </p>
                       <p class="card-text">
-                          {{ news.shortDesc }}
+                          <span *ngIf="toEdit">
+                              <textarea name="" id="" value="{{ news.shortDesc }}" rows="5" class="form-control"></textarea>
+                          </span>
                       </p>
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                          <button class="btn btn-sm btn-outline-secondary">Zobacz</button>
-                          <button class="btn btn-sm btn-outline-secondary">Edytuj</button>
+                          <button (click)="navigate('news',news.id)" class="btn btn-sm btn-outline-secondary">Zobacz</button>
+                          <button class="btn btn-sm btn-outline-secondary" (click)="toEdit = !toEdit">Edytuj</button>
+                          <button *ngIf="toEdit" (click)="toEdit = !toEdit" class="btn btn-sm btn-outline-secondary">Aktualizuj</button>
+                        </div>
+                        <div class="align-items-right">
+                            {{ news.uploadedDate }}
                         </div>
                       </div>
                     </div>
@@ -50,5 +71,8 @@
                 </div>
             </div>
         </div>
+        </form>
     </div>
+
+    
 </div>

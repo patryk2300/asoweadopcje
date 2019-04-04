@@ -40,9 +40,10 @@ export class ManageGalleryCardComponent {
       upload.name = this.mainImg.name;
       upload.attach = this.dogName.charAt(0).toUpperCase() + this.dogName.slice(1).toLowerCase();
       upload.desc = this.desc;
+      const path = `gallery`;
       
-      this.fileManager.saveFileData(upload).then(() => {
-        this.fileManager.pushUpload(upload);
+      this.fileManager.saveFileData(upload, path).then(() => {
+        this.fileManager.pushUpload(upload, path);
 
         Array.from(this.fileList).forEach((file) => {
           let upload = new Upload(file);
@@ -51,7 +52,7 @@ export class ManageGalleryCardComponent {
           upload.file = file;
           upload.attach = this.dogName.charAt(0).toUpperCase() + this.dogName.slice(1).toLowerCase();
 
-          this.fileManager.pushUpload(upload);
+          this.fileManager.pushUpload(upload, path);
         });
       });
     }

@@ -12,44 +12,35 @@
   <div class="modal-body">
       <label for="carousel-dog-name">Tytuł</label>
       <input type="text" 
-             name="dogName" 
+             name="title" 
              id="carousel-dog-name" 
              class="form-control" 
              ngModel 
              required 
              #first="ngModel">
+      
+      <label for="mainImg" class="margin-top">Główne zdjęcie</label>
+      <input type="file" name="mainImg" id="mainImg" (change)="mainImg = $event.target.files[0]" class="form-control">
 
-      <label for="desc">Opis</label>
-      <textarea name="imgDesc" 
+      <label for="shortDesc" class="margin-top">Krótki opis</label>
+      <textarea name="shortDesc" 
+                id="shortDesc" 
+                rows="2" 
+                class="form-control" 
+                required 
+                ngModel></textarea>
+
+      <label for="desc" class="margin-top">Opis</label>
+      <textarea name="desc" 
                 id="desc" 
                 rows="5" 
                 class="form-control" 
                 required 
                 ngModel></textarea>
       
-      <!-- <label for="image" class="image__upload center">
-        <span style="padding-right: 5px;">
-          Wgraj zdjęcie
-        </span>
-        <i class="fas fa-download"></i>
-      </label>
+      <label for="images" class="margin-top">Zdjęcia</label>
+      <file-upload id="images" (selectedEvent)="detectUpload($event)"></file-upload>
       
-     <p class="float-left" 
-         style="font-size: 1.5rem; width: 60%;padding-top: 25px; padding-left: 5%;"
-         *ngIf="file">
-         {{ file.name }}
-      </p>
-      
-      <input name="image" 
-             id="image" 
-             type="file" 
-             (change)="detectUpload($event.target.files[0])" 
-             hidden> -->
-      
-      <div style="width: 100%;">
-        <file-upload (selectedEvent)="detectUpload($event)"></file-upload>
-      </div>
-      
-      <button class="btn btn-primary float-right">Dodaj</button>
+      <button type="submit" class="btn btn-primary float-right">Dodaj</button>
     </div>
   </form>

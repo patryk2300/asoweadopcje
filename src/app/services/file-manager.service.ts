@@ -3,6 +3,7 @@ import { Upload } from '../file-upload/upload';
 import { AngularFireStorage, AngularFireUploadTask, AngularFireStorageReference } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore'; 1
 import * as firebase from 'firebase';
+import { NewsSchema } from '../news-upload/news-schema';
 
 
 @Injectable({
@@ -18,25 +19,27 @@ export class FileManagerService {
 
   private basePath: string = 'gallery';
   private baseMenuPath: string = 'main-menu';
+  
+  pushUpload(upload: Upload, path: string, news?: NewsSchema){
 
-  pushUpload(upload: Upload){
+    this.task = this.storage.upload(`${path}/${upload.attach}/${upload.file.name}`, upload.file)
 
-    this.task = this.storage.upload(`${ this.basePath }/${ upload.attach }/${upload.file.name}`, upload.file)
+    this.storage.ref(`${path}/${upload.attach}/${upload.file.name}`).put(upload.file)
+      .then((result) => {
+        this.storage.ref(`${path}/${upload.attach}/${upload.file.name}`)
+            .getDownloadURL()
+            .subscribe(url => {
+              console.log(url);
+              upload.url = url;
 
-    this.task.then(() => {
-      this.storage.ref(`${ this.basePath }/${ upload.attach }/${upload.file.name}`)
-        .getDownloadURL()
-        .subscribe(url => {
-          upload.url = url;
-          
-          if(upload.mainFile){
-            this.saveFileUrl(upload, true);
+              if(upload.mainFile){
+                this.saveFileUrl(upload, path, true);
 
-            upload.mainFile = null;
-          } else this.saveFileUrl(upload, false);
-        
-        });
-    });
+                upload.mainFile = null;
+              } else this.saveFileUrl(upload, path, false);
+
+            })
+      })
   }
 
   pushUploadMainMenu(dogName: string, imgDesc: string, file: File){
@@ -59,18 +62,23 @@ export class FileManagerService {
 
   }
 
-  saveFileData(upload: Upload){
+  saveFileData(upload: Upload, path: string){
     let obj = this.createFbObject();
 
     obj.dogName = upload.attach;
     obj.desc = upload.desc;
 
-    return this.db.collection(this.basePath).doc(`${ upload.attach }`).set(obj);
+    return this.db.collection(path).doc(`${ upload.attach }`).set(obj);
   }
 
-  saveFileUrl(upload: Upload, mainImg?: boolean){
+  saveNewsFile(news: NewsSchema, path: string){
+    return this.db.collection(path).doc(news.title).set(news);
+  }
+
+  saveFileUrl(upload: Upload, path: string, mainImg?: boolean){
     if(mainImg){
-      this.db.collection(this.basePath).doc(`${ upload.attach }`)
+      console.log(upload);
+      this.db.collection(path).doc(`${ upload.attach }`)
         .update({
           mainImg: {
             downloadUrl: upload.url, 
@@ -82,7 +90,9 @@ export class FileManagerService {
       let uniqueData = {};
       uniqueData[`${upload.file.name}`] = { downloadUrl: upload.url, imgName: upload.name };
 
-      this.db.collection(this.basePath).doc(`${ upload.attach }`).set({
+      
+
+      this.db.collection(path).doc(`${ upload.attach }`).set({
         images: firebase.firestore.FieldValue.arrayUnion({ downloadUrl: upload.url, imgName: upload.name })
       }, {merge: true});
     }
@@ -95,6 +105,10 @@ export class FileManagerService {
             imgUrl: url, 
             imgDesc: imgDesc
           });
+  }
+
+  pushNews(news: NewsSchema, mainImg: File, images: FileList){
+    
   }
 
   createFbObject(){

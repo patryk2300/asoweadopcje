@@ -38,7 +38,7 @@ export class GalleryService {
       let mainImg;
       let imgs: Array<any>;
 
-      this.getDoc(item.id)
+      this.getDoc('gallery/', item.id)
         .get()
         .toPromise()
         .then(doc => {
@@ -85,7 +85,7 @@ export class GalleryService {
       this.current = dog;
     }
 
-    getDoc(docName: string){
-      return this.db.collection(this.basePath).doc(docName);
+    getDoc(path: string, docName: string){
+      return this.db.collection(path).doc(docName);
     }
 }

@@ -13,8 +13,8 @@ export class HomeComponent implements OnInit {
   images$: Observable<any>;
 
   news$: Observable<any>
-  
-  path: string = 'main-menu';
+
+  toEdit: boolean = false;
 
   constructor(private galleryService: GalleryService, private router: Router) { }
 
@@ -23,8 +23,13 @@ export class HomeComponent implements OnInit {
     this.news$ = this.galleryService.get('news');
   }
 
-  navigate(dogName: string){
-    this.router.navigateByUrl(`/gallery/${dogName}`);
+  navigate(path: string, id?: string){
+    let destPath = `/${path}`;
+    
+    if(id)
+      destPath += `/${id}`
+
+    this.router.navigateByUrl(destPath);
   }
   
   remove(dog: string){

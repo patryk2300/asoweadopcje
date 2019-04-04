@@ -9,11 +9,14 @@ import { DescriptionComponent } from './description/description.component';
 import { ManageGalleryCardComponent } from './manage-gallery-card/manage-gallery-card.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { ContactComponent } from './contact/contact.component';
+import { NewsComponent } from './news/news.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: '#', component: HomeComponent },
+  { path: 'news', component: NewsComponent },
+  { path: 'news/:name', component: NewsComponent },
   { path: 'schedule', component: ScheduleComponent },
   { path: 'gallery', component: GalleryComponent },
   { path: 'gallery/:name', component: DescriptionComponent },
