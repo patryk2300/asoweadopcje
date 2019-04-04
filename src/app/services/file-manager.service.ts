@@ -4,6 +4,7 @@ import { AngularFireStorage, AngularFireUploadTask, AngularFireStorageReference 
 import { AngularFirestore } from '@angular/fire/firestore'; 1
 import * as firebase from 'firebase';
 import { NewsSchema } from '../news-upload/news-schema';
+import { GalleryCard } from '../manage-gallery-card/gallery-card';
 
 
 @Injectable({
@@ -62,17 +63,8 @@ export class FileManagerService {
 
   }
 
-  saveFileData(upload: Upload, path: string){
-    let obj = this.createFbObject();
-
-    obj.dogName = upload.attach;
-    obj.desc = upload.desc;
-
-    return this.db.collection(path).doc(`${ upload.attach }`).set(obj);
-  }
-
-  saveNewsFile(news: NewsSchema, path: string){
-    return this.db.collection(path).doc(news.title).set(news);
+  pushData(item: Object, path: string, id: any){
+    return this.db.collection(path).doc(`${id}`).set(item);
   }
 
   saveFileUrl(upload: Upload, path: string, mainImg?: boolean){
@@ -106,19 +98,4 @@ export class FileManagerService {
             imgDesc: imgDesc
           });
   }
-
-  pushNews(news: NewsSchema, mainImg: File, images: FileList){
-    
-  }
-
-  createFbObject(){
-    return {
-        desc: '',
-        images : [],
-        mainImg: {
-          downloadUrl: '', 
-          imgName: ''},
-        dogName: ''
-      }
-    }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GalleryService } from '../services/gallery.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'home',
@@ -32,7 +33,16 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl(destPath);
   }
   
-  remove(dog: string){
-    this.galleryService.removeBanner(dog);
+  remove(item, id?){
+
+    if(id)
+      this.galleryService.removeCard(item, 'news');
+    else
+      this.galleryService.removeBanner(item);
+  }
+
+  onSubmit(f: NgForm){
+    console.log(f.value);
+    this.toEdit = !this.toEdit;
   }
 }

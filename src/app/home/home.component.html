@@ -11,7 +11,7 @@
             <p>{{ image.imgDesc }}</p>
         </div>
 
-        <span style="position:absolute; right: 10px; top: 10px; z-index: 1100; cursor: pointer;">
+        <span class="remove-btn">
             <i 
             style="color: black; font-size: 24px;" 
             class="far fa-trash-alt" 
@@ -24,13 +24,19 @@
         Aktualności
     </div>
 
-    <div class="album py-5 bg-light" *ngFor="let news of news$ | async">
-        <form action="">
+    <div class="album py-5 bg-light">
             <div class="container">
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4" *ngFor="let news of news$ | async">
                   <div class="card mb-4 shadow-sm">
                     <div class="card-body">
+                    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+                    <span class="remove-btn">
+                        <i 
+                        style="color: black; font-size: 24px;" 
+                        class="far fa-trash-alt" 
+                        (click)="remove(news, news.id)"></i>
+                    </span>
                       <img src="{{ news.mainImg.downloadUrl }}" 
                            width="100%" 
                            height="200px" 
@@ -43,7 +49,7 @@
                               </strong>
                           </span>
                           <span *ngIf="toEdit">
-                              <input type="text" value="{{ news.title }}" class="form-control">
+                              <input type="text" value="{{ news.title }}" id="title" name="title" class="form-control">
                           </span>
                     </p>
                       <p class="card-text">
@@ -53,25 +59,25 @@
                       </p>
                       <p class="card-text">
                           <span *ngIf="toEdit">
-                              <textarea name="" id="" value="{{ news.shortDesc }}" rows="5" class="form-control"></textarea>
+                              <textarea name="shortDesc" id="shortDesc" value="{{ news.shortDesc }}" rows="5" class="form-control"></textarea>
                           </span>
                       </p>
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                           <button (click)="navigate('news',news.id)" class="btn btn-sm btn-outline-secondary">Zobacz</button>
-                          <button class="btn btn-sm btn-outline-secondary" (click)="toEdit = !toEdit">Edytuj</button>
-                          <button *ngIf="toEdit" (click)="toEdit = !toEdit" class="btn btn-sm btn-outline-secondary">Aktualizuj</button>
+                          <button class="btn btn-sm btn-outline-secondary" type="button" (click)="toEdit = !toEdit">Edytuj</button>
+                          <button *ngIf="toEdit" type="submit" class="btn btn-sm btn-outline-secondary">Aktualizuj</button>
                         </div>
                         <div class="align-items-right">
                             {{ news.uploadedDate }}
                         </div>
                       </div>
+                    </form>
                     </div>
                   </div>
                 </div>
             </div>
         </div>
-        </form>
     </div>
 
     

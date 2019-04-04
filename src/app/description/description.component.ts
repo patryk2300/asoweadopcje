@@ -25,10 +25,11 @@ export class DescriptionComponent implements OnInit {
 
   ngOnInit() {
     let name = this.router.url.replace('/gallery/','');
-    this.dogSubscription = this.service.getDoc(name)
+    this.dogSubscription = this.service.getDoc('gallery/', name)
       .valueChanges()
       .subscribe((value) => {
         this.dog = value;
+        console.log(value);
         this.imgs = this.dog.images;
       });
   }

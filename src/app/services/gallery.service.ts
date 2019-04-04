@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FileManagerService } from './file-manager.service';
 import { map } from 'rxjs/operators';
+import { NewsSchema } from '../news-upload/news-schema';
 
 @Injectable({
   providedIn: 'root'
@@ -34,11 +35,10 @@ export class GalleryService {
         }));
     }
 
-    removeCard(item){
+    removeCard(item, path: string){
       let mainImg;
       let imgs: Array<any>;
-
-      this.getDoc('gallery/', item.id)
+      this.getDoc(path, item.id)
         .get()
         .toPromise()
         .then(doc => {
@@ -46,15 +46,15 @@ export class GalleryService {
           imgs = doc.get('images');
         })
         .then(() => {
-          this.storage.ref(this.basePath).child(`${item.id}/${mainImg.imgName}`)
+          this.storage.ref(path).child(`${item.id}/${mainImg.imgName}`)
             .delete();
           imgs.forEach(img => {
-            this.storage.ref(this.basePath).child(`${item.id}/${img.imgName}`)
+            this.storage.ref(path).child(`${item.id}/${img.imgName}`)
               .delete();
           });
         })
         .then(() => {
-          this.db.collection(this.basePath).doc(item.id).delete();
+          this.db.collection(path).doc(item.id).delete();
         })
       }
     
@@ -68,6 +68,17 @@ export class GalleryService {
           this.db.collection(path).doc(dog).delete();
         });
         
+    }
+
+    removeNews(news){
+      const path: string = 'news';
+
+      this.storage.ref(`${path}/${news.id}`)
+        .delete()
+        .toPromise()
+        .then(() => {
+          this.db.collection(path).doc(`${news.id}`).delete();
+        });
     }
 
     updateName(item, name){

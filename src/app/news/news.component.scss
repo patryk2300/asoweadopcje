@@ -1,0 +1,133 @@
+.container{
+    height: auto;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 50px;
+    border: 0.1rem solid lightgray;
+    border-radius: 5rem;
+}
+
+.news__title{
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.desc_sub-images{
+    width: 100%;
+    padding-top: 5%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: grid;
+    float: left;
+    align-items: center;
+}
+
+.desc_sub-images_placeholder{
+    // border-style: dotted;
+    text-align: center;
+    padding-bottom: 2%;
+}
+
+.desc_sub-images_sub-image{
+    position: relative;
+    width: 75%;
+    border-style: solid;
+    border-color: black;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.desc_sub-images_sub-image:hover { opacity: 0.7; }
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: auto !important;
+    height: 100%;
+}
+
+.modal-content { 
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+.close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 56px;
+    right: 0;
+    color: gray;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    z-index: 110;
+}
+
+.mr {
+    justify-content: flex-end;
+    top: 0;
+    right: 1%;
+    color: gray;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.mr:hover{
+    color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+    color: #f1f1f1;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.arrows{
+    display: flex;
+    position: absolute;
+    align-items: center;
+    height: 100%; 
+    width: 20%; 
+    z-index: 100;
+}
+.ml {
+    top: 0;
+    left: 1%;
+    color: gray;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.ml:hover{
+    color: #f1f1f1;
+}

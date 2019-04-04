@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FileManagerService } from '../services/file-manager.service';
 import { Upload } from '../file-upload/upload';
+import { GalleryCard } from './gallery-card';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'manage-gallery-card',
@@ -32,17 +34,23 @@ export class ManageGalleryCardComponent {
     this.mainImg = event.target.files.item(0);
   }
 
-  uploadFile(){
+  uploadFile(galleryCard: GalleryCard){
     if(this.mainImg && this.fileList){
       let upload = new Upload(this.mainImg);
       
+      
+      const path = `gallery`;
+      const id = Math.floor((Math.random() * 1000000) + 1);
+      
+      
+
+      console.log(galleryCard);
+
       upload.mainFile = this.mainImg;
       upload.name = this.mainImg.name;
-      upload.attach = this.dogName.charAt(0).toUpperCase() + this.dogName.slice(1).toLowerCase();
-      upload.desc = this.desc;
-      const path = `gallery`;
+      upload.attach = id;
       
-      this.fileManager.saveFileData(upload, path).then(() => {
+      this.fileManager.pushData(galleryCard, path, id).then(() => {
         this.fileManager.pushUpload(upload, path);
 
         Array.from(this.fileList).forEach((file) => {
@@ -50,7 +58,7 @@ export class ManageGalleryCardComponent {
 
           upload.name = file.name;
           upload.file = file;
-          upload.attach = this.dogName.charAt(0).toUpperCase() + this.dogName.slice(1).toLowerCase();
+          upload.attach = id;
 
           this.fileManager.pushUpload(upload, path);
         });
@@ -58,8 +66,17 @@ export class ManageGalleryCardComponent {
     }
   }
 
-  apply(){
-    this.uploadFile();
+  onSubmit(f: NgForm){
+    let galleryCard = new GalleryCard();
+
+    galleryCard = f.value;
+    galleryCard.images = [];
+    galleryCard.mainImg = {
+      downloadUrl: '',
+      imgName: ''
+    }
+
+    this.uploadFile(galleryCard);
     this.closeModal();
   }
 

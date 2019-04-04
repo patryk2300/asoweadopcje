@@ -26,20 +26,21 @@ export class NewsUploadComponent implements OnInit {
 
   uploadFiles(news: NewsSchema){
     const path = `news`
+    const id = Math.floor((Math.random() * 1000000) + 1);
 
     let upload = new Upload(this.mainImg);
-    upload.attach = news.title;
+    upload.attach = id;
     upload.mainFile = this.mainImg;
     upload.name = this.mainImg.name;
 
-    this.fileManager.saveNewsFile(news, path).then(() => {
+    this.fileManager.pushData(news, path, id).then(() => {
       
       this.fileManager.pushUpload(upload, path, news);
   
       Array.from(this.images).forEach((file) => {
         let upload = new Upload(file);
         
-        upload.attach = news.title;
+        upload.attach = id;
         upload.name = file.name;
 
         this.fileManager.pushUpload(upload, path, news);
@@ -56,10 +57,7 @@ export class NewsUploadComponent implements OnInit {
       downloadUrl: '',
       imgName: ''
     };
-    news.images = [{
-      downloadUrl: '',
-      imgName: ''
-    }];
+    news.images = [];
 
     news.uploadedDate = new Date().toLocaleDateString();
     
