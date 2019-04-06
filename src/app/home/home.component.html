@@ -15,7 +15,7 @@
             <i 
             style="color: black; font-size: 24px;" 
             class="far fa-trash-alt" 
-            (click)="remove(image.dogName)"></i>
+            (click)="remove(image)"></i>
         </span>
         </ng-template>
     </ngb-carousel>
@@ -64,7 +64,7 @@
                       </p>
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                          <button (click)="navigate('news',news.id)" class="btn btn-sm btn-outline-secondary">Zobacz</button>
+                          <button (click)="navigateById('news',news.id)" class="btn btn-sm btn-outline-secondary">Zobacz</button>
                           <button class="btn btn-sm btn-outline-secondary" type="button" (click)="toEdit = !toEdit">Edytuj</button>
                           <button *ngIf="toEdit" type="submit" class="btn btn-sm btn-outline-secondary">Aktualizuj</button>
                         </div>

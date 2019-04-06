@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Upload } from '../file-upload/upload';
 import { AngularFireStorage, AngularFireUploadTask, AngularFireStorageReference } from '@angular/fire/storage';
-import { AngularFirestore } from '@angular/fire/firestore'; 1
+import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 import { NewsSchema } from '../news-upload/news-schema';
-import { GalleryCard } from '../manage-gallery-card/gallery-card';
+import { GalleryService } from './gallery.service';
 
 
 @Injectable({
@@ -16,7 +16,7 @@ export class FileManagerService {
 
   task: AngularFireUploadTask;
 
-  constructor(private db: AngularFirestore, private storage: AngularFireStorage) {}
+  constructor(private db: AngularFirestore, private storage: AngularFireStorage, private galleryService: GalleryService) {}
 
   private basePath: string = 'gallery';
   private baseMenuPath: string = 'main-menu';
@@ -44,23 +44,24 @@ export class FileManagerService {
   }
 
   pushUploadMainMenu(dogName: string, imgDesc: string, file: File){
-    this.db.collection(this.basePath).doc(dogName).get()
-        .subscribe(document => {
-          if(document.exists){
-            this.task = this.storage.upload(`${ this.baseMenuPath }/${ dogName }`, file);
 
-            this.task.then(() => {
-              this.storage.ref(`${ this.baseMenuPath }/${ dogName }`).getDownloadURL()
-                .subscribe(url => {
-                  this.saveMainMenuUrl(dogName, url, imgDesc);
-                })
-            })
-          }
-          else
-            alert('Takiego psa nie ma w bazie ! (Spójrz w zakładkę Psiaki)');
+    firebase.firestore().collection('gallery') 
+      .where('dogName', '==', dogName)
+      .get()
+      .then(value => {
+        if(value.docs){
+          this.task = this.storage.upload(`${ this.baseMenuPath }/${ dogName }`, file);
 
-        });
-
+          this.task.then(() => {
+            this.storage.ref(`${ this.baseMenuPath }/${ dogName }`).getDownloadURL()
+              .subscribe(url => {
+                this.saveMainMenuUrl(dogName, url, imgDesc, file.name);
+              })
+          })
+        }
+        else
+          alert('Takiego psa nie ma w bazie ! (Spójrz w zakładkę Psiaki)');
+      });
   }
 
   pushData(item: Object, path: string, id: any){
@@ -90,11 +91,12 @@ export class FileManagerService {
     }
   }
   
-  saveMainMenuUrl(dogName: string, url: string, imgDesc: string){
+  saveMainMenuUrl(dogName: string, url: string, imgDesc: string, file_name: string){
     this.db.collection(this.baseMenuPath).doc(`${ dogName }`)
         .set({
             dogName: dogName,
-            imgUrl: url, 
+            imgUrl: url,
+            imgName: file_name,
             imgDesc: imgDesc
           });
   }

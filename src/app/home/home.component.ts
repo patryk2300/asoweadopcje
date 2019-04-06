@@ -24,11 +24,22 @@ export class HomeComponent implements OnInit {
     this.news$ = this.galleryService.get('news');
   }
 
-  navigate(path: string, id?: string){
-    let destPath = `/${path}`;
+  navigate(path: string, dogName?: string){
     
-    if(id)
-      destPath += `/${id}`
+    let destPath = `/${path}`;
+
+    this.galleryService.findDogId(path, dogName)
+      .then(value => {
+        let id = value.docs.shift().id
+        
+        destPath += `/${id}`
+        this.router.navigateByUrl(destPath);
+      })
+  }
+
+  navigateById(path: string, id: any){
+    
+    let destPath = `/${path}/${id}`;
 
     this.router.navigateByUrl(destPath);
   }

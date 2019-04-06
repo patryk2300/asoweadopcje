@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { FileManagerService } from './file-manager.service';
 import { map } from 'rxjs/operators';
-import { NewsSchema } from '../news-upload/news-schema';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,7 @@ export class GalleryService {
   basePath: string = 'gallery/';
   current;
   
-  constructor(private db: AngularFirestore, private storage: AngularFireStorage, private fileManager: FileManagerService) {
+  constructor(private db: AngularFirestore, private storage: AngularFireStorage) {
     this.galleryRef = this.db.collection(this.basePath);
     this.gallery$ = this.get(this.basePath);
   }
@@ -58,14 +57,14 @@ export class GalleryService {
         })
       }
     
-    removeBanner(dog: string){
+    removeBanner(dog){
       const path: string = 'main-menu'
 
-      this.storage.ref(`${path}/${dog}.jpg`)
+      this.storage.ref(`${path}/${dog.imgName}`)
         .delete()
         .toPromise()
         .then(() => {
-          this.db.collection(path).doc(dog).delete();
+          this.db.collection(path).doc(dog.dogName).delete();
         });
         
     }
@@ -88,15 +87,13 @@ export class GalleryService {
       this.galleryRef.doc(`${ item.id }`).update(newItem);
     }
 
-    get currentDog(){
-      return this.current;
-    }
-    
-    set currentDog(dog){
-      this.current = dog;
-    }
-
     getDoc(path: string, docName: string){
       return this.db.collection(path).doc(docName);
+    }
+
+    findDogId(path: string, dogName: string){
+      return firebase.firestore().collection(path)
+        .where('dogName', '==', dogName)
+        .get()
     }
 }
