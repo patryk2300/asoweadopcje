@@ -1,0 +1,46 @@
+<div class="modal-header">
+    <h4 class="modal-title">Dodaj Aktualności</h4>
+    <button 
+    type="button" 
+    class="close" 
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')">
+    &times;
+  </button>
+</div>    
+<form class="card" enctype="multipart/form-data" #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <div class="modal-body">
+      <label for="carousel-dog-name">Tytuł</label>
+      <input type="text" 
+             name="title" 
+             id="carousel-dog-name" 
+             class="form-control" 
+             ngModel 
+             required 
+             #first="ngModel">
+      
+      <label for="mainImg" class="margin-top">Główne zdjęcie</label>
+      <input type="file" name="mainImg" id="mainImg" (change)="mainImg = $event.target.files[0]" class="form-control">
+
+      <label for="shortDesc" class="margin-top">Krótki opis</label>
+      <textarea name="shortDesc" 
+                id="shortDesc" 
+                rows="2" 
+                class="form-control" 
+                required 
+                ngModel></textarea>
+
+      <label for="desc" class="margin-top">Opis</label>
+      <textarea name="desc" 
+                id="desc" 
+                rows="5" 
+                class="form-control" 
+                required 
+                ngModel></textarea>
+      
+      <label for="images" class="margin-top">Zdjęcia</label>
+      <file-upload id="images" (selectedEvent)="detectUpload($event)"></file-upload>
+      
+      <button type="submit" class="btn btn-success float-right">Zatwierdź</button>
+    </div>
+  </form>

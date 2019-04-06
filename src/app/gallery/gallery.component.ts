@@ -29,7 +29,7 @@ export class GalleryComponent implements OnInit {
   }
 
   remove(dog){
-    this.service.removeCard(dog);
+    this.service.removeCard(dog, 'gallery');
   }
 
   add(){
@@ -41,8 +41,6 @@ export class GalleryComponent implements OnInit {
   }
 
   navigate(dog){
-    this.service.currentDog = dog;
-
-    this.router.navigate([`/gallery/${ dog.dogName }`]);
+    this.router.navigate([`/gallery/${ dog }`]);
   }
 }

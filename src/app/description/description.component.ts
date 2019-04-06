@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GalleryService } from '../services/gallery.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'description',
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
 })
 
 export class DescriptionComponent implements OnInit {
+  dogSubscription: Subscription;
+
   dog;
   imgs;
 
@@ -22,12 +25,17 @@ export class DescriptionComponent implements OnInit {
 
   ngOnInit() {
     let name = this.router.url.replace('/gallery/','');
-    this.dog = this.service.getDoc(name)
+    this.dogSubscription = this.service.getDoc('gallery/', name)
       .valueChanges()
       .subscribe((value) => {
         this.dog = value;
+        console.log(value);
         this.imgs = this.dog.images;
       });
+  }
+
+  ngOnDestroy(): void {
+    this.dogSubscription.unsubscribe();
   }
   
   changeImage(dir: number){

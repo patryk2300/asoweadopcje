@@ -19,8 +19,8 @@
       </label>
     </span>
     <span *ngIf="isSelected">
-      <h2 *ngIf="this.galleryCard.fileList.length === 1">Wybrano {{ this.galleryCard.fileList.length }} plik.</h2>
-      <h2 *ngIf="this.galleryCard.fileList.length > 1">Wybrano {{ this.galleryCard.fileList.length }} plików.</h2>
+      <h2 *ngIf="fileList.length === 1">Wybrano {{ fileList.length }} plik.</h2>
+      <h2 *ngIf="fileList.length > 1">Wybrano {{ fileList.length }} plików.</h2>
     </span>
 
 </div>

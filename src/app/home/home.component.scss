@@ -1,3 +1,11 @@
 .mrg-bt{
     margin-bottom: 100px !important;
 }
+
+.remove-btn{
+    position:absolute; 
+    right: 10px; 
+    top: 10px; 
+    z-index: 1000; 
+    cursor: pointer;
+}

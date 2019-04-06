@@ -1,0 +1,31 @@
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image__upload{
+    float: left;
+    color: hsl(25, 100%, 90%);
+    font-style: bold;
+    background-color: hsl(25, 100%, 60%);
+    height: 50px;
+    width: 130px;
+    border-radius: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: .3s ease-in;
+}
+
+.image__upload:hover{
+    background-color: hsl(25, 100%, 50%);
+    transition: .3s ease-out;
+}
+
+.image__upload:focus{
+    background-color: hsl(25, 100%, 50%);
+}
+
+.margin-top{
+    margin-top: 20px;
+}

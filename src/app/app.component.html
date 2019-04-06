@@ -4,18 +4,18 @@
 
   <div id="content-wrap">
   
-  <div *ngIf="user.isLoggedIn" style="position: absolute;left: 0;top: 56px;">
-    <!-- sidebar -->
-    <admin-panel></admin-panel>
-  </div>
-  <!-- main content -->      
-  <router-outlet ></router-outlet>
-  <!-- if logged in then display background and sidebar -->
-      
+    <div *ngIf="user.isLoggedIn" style="position: fixed;left: 0;top: 56px; z-index: 1000;">
+      <!-- sidebar -->
+      <admin-panel></admin-panel>
+    </div>
+    <!-- main content -->      
+    <router-outlet ></router-outlet>
+    <!-- if logged in then display background and sidebar -->
+        
   </div>
   <div id="background"></div>
   <!-- footer -->
-  <footer id="footer">
+  <footer id="footer" style="z-index: 0;">
     <app-footer></app-footer>
   </footer>
 </div>

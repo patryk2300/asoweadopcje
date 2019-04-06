@@ -5,11 +5,11 @@ import { NgForm } from '@angular/forms';
 
 
 @Component({
-  selector: 'app-home-image-upload',
-  templateUrl: './home-image-upload.component.html',
-  styleUrls: ['./home-image-upload.component.scss']
+  selector: 'home-banner-upload',
+  templateUrl: './home-banner-upload.component.html',
+  styleUrls: ['./home-banner-upload.component.scss']
 })
-export class HomeImageUploadComponent {
+export class HomeBannerUploadComponent {
 
   file: File;
 

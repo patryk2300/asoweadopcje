@@ -1,9 +1,9 @@
-<div class="desc">
+<div class="desc" *ngIf="dog">
   <div class="desc_title">
     <strong>{{ dog.dogName }}</strong>
   </div>
 
-  <span *ngIf="dog.mainImg">
+  <span>
     <img src="{{ dog.mainImg.downloadUrl }}" alt="img" class="desc_main-image">
   </span>
   
@@ -11,7 +11,7 @@
       {{ dog.desc }}
   </div>
   
-  <div class="desc_sub-images">  
+  <div class="desc_sub-images">
     <div *ngFor="let img of dog.images" class="desc_sub-images_placeholder">
       
       <img src="{{ img.downloadUrl }}" 

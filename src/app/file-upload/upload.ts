@@ -2,7 +2,7 @@ export class Upload{
     file: File;
     mainFile: File;
     name: string;
-    attach: string;
+    attach: any;
     url: string;
     desc: string;
     progress: number;

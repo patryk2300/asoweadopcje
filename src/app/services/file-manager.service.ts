@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Upload } from '../file-upload/upload';
 import { AngularFireStorage, AngularFireUploadTask, AngularFireStorageReference } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
 import * as firebase from 'firebase';
+import { NewsSchema } from '../news-upload/news-schema';
+import { GalleryService } from './gallery.service';
 
 
 @Injectable({
@@ -15,63 +16,62 @@ export class FileManagerService {
 
   task: AngularFireUploadTask;
 
-  constructor(private db: AngularFirestore, private storage: AngularFireStorage) {}
+  constructor(private db: AngularFirestore, private storage: AngularFireStorage, private galleryService: GalleryService) {}
 
   private basePath: string = 'gallery';
   private baseMenuPath: string = 'main-menu';
+  
+  pushUpload(upload: Upload, path: string, news?: NewsSchema){
 
-  pushUpload(upload: Upload){
+    this.task = this.storage.upload(`${path}/${upload.attach}/${upload.file.name}`, upload.file)
 
-    this.task = this.storage.upload(`${ this.basePath }/${ upload.attach }/${upload.file.name}`, upload.file)
+    this.storage.ref(`${path}/${upload.attach}/${upload.file.name}`).put(upload.file)
+      .then((result) => {
+        this.storage.ref(`${path}/${upload.attach}/${upload.file.name}`)
+            .getDownloadURL()
+            .subscribe(url => {
+              console.log(url);
+              upload.url = url;
 
-    this.task.then(() => {
-      this.storage.ref(`${ this.basePath }/${ upload.attach }/${upload.file.name}`)
-        .getDownloadURL()
-        .subscribe(url => {
-          upload.url = url;
-          
-          if(upload.mainFile){
-            this.saveFileUrl(upload, true);
+              if(upload.mainFile){
+                this.saveFileUrl(upload, path, true);
 
-            upload.mainFile = null;
-          } else this.saveFileUrl(upload, false);
-        
-        });
-    });
+                upload.mainFile = null;
+              } else this.saveFileUrl(upload, path, false);
+
+            })
+      })
   }
 
   pushUploadMainMenu(dogName: string, imgDesc: string, file: File){
-    this.db.collection(this.basePath).doc(dogName).get()
-        .subscribe(document => {
-          if(document.exists){
-            this.task = this.storage.upload(`${ this.baseMenuPath }/${ dogName }`, file);
 
-            this.task.then(() => {
-              this.storage.ref(`${ this.baseMenuPath }/${ dogName }`).getDownloadURL()
-                .subscribe(url => {
-                  this.saveMainMenuUrl(dogName, url, imgDesc);
-                })
-            })
-          }
-          else
-            return false;
+    firebase.firestore().collection('gallery') 
+      .where('dogName', '==', dogName)
+      .get()
+      .then(value => {
+        if(value.docs){
+          this.task = this.storage.upload(`${ this.baseMenuPath }/${ dogName }`, file);
 
-        });
-
+          this.task.then(() => {
+            this.storage.ref(`${ this.baseMenuPath }/${ dogName }`).getDownloadURL()
+              .subscribe(url => {
+                this.saveMainMenuUrl(dogName, url, imgDesc, file.name);
+              })
+          })
+        }
+        else
+          alert('Takiego psa nie ma w bazie ! (Spójrz w zakładkę Psiaki)');
+      });
   }
 
-  saveFileData(upload: Upload){
-    let obj = this.createFbObject();
-
-    obj.dogName = upload.attach;
-    obj.desc = upload.desc;
-
-    return this.db.collection(this.basePath).doc(`${ upload.attach }`).set(obj);
+  pushData(item: Object, path: string, id: any){
+    return this.db.collection(path).doc(`${id}`).set(item);
   }
 
-  saveFileUrl(upload: Upload, mainImg?: boolean){
+  saveFileUrl(upload: Upload, path: string, mainImg?: boolean){
     if(mainImg){
-      this.db.collection(this.basePath).doc(`${ upload.attach }`)
+      console.log(upload);
+      this.db.collection(path).doc(`${ upload.attach }`)
         .update({
           mainImg: {
             downloadUrl: upload.url, 
@@ -83,29 +83,21 @@ export class FileManagerService {
       let uniqueData = {};
       uniqueData[`${upload.file.name}`] = { downloadUrl: upload.url, imgName: upload.name };
 
-      this.db.collection(this.basePath).doc(`${ upload.attach }`).set({
+      
+
+      this.db.collection(path).doc(`${ upload.attach }`).set({
         images: firebase.firestore.FieldValue.arrayUnion({ downloadUrl: upload.url, imgName: upload.name })
       }, {merge: true});
     }
   }
   
-  saveMainMenuUrl(dogName: string, url: string, imgDesc: string){
+  saveMainMenuUrl(dogName: string, url: string, imgDesc: string, file_name: string){
     this.db.collection(this.baseMenuPath).doc(`${ dogName }`)
         .set({
             dogName: dogName,
-            imgUrl: url, 
+            imgUrl: url,
+            imgName: file_name,
             imgDesc: imgDesc
           });
   }
-
-  createFbObject(){
-    return {
-        desc: '',
-        images : [],
-        mainImg: {
-          downloadUrl: '', 
-          imgName: ''},
-        dogName: ''
-      }
-    }
 }

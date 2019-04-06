@@ -1,0 +1,40 @@
+<div class="container" *ngIf="news">
+  <h1 class="news__title">
+    <strong>{{ news.title }}</strong>
+  </h1>
+  
+  <p>
+    {{ news.desc }}
+  </p>
+
+  <div class="desc_sub-images">
+    <div *ngFor="let img of news.images" class="desc_sub-images_placeholder">
+      
+      <img src="{{ img.downloadUrl }}" 
+           alt="img"      
+           (click) = "displayImage(img.downloadUrl)"
+           class="desc_sub-images_sub-image">
+          
+    </div>
+  </div>
+    
+    <!-- The Modal -->
+    <div id="myModal" class="modal" [ngStyle]="{'display': display }">
+      <div (click)="display = 'none'" style="width:100%; height:100%; z-index: -1000;">
+          <img class="modal-content" id="img01" [src]="image">
+      </div>
+      <!-- The Close Button -->
+      <span class="close" (click)="display = 'none'">&times;</span>
+  
+      <!-- Modal Content (The Image) -->
+      
+      <div class="ml arrows" (click)="changeImage(-1)">
+        <span>&lt;</span>
+      </div>
+      <div class="mr arrows" (click)="changeImage(1)">
+        <span>&gt;</span>
+      </div>
+  
+    </div>
+
+</div>

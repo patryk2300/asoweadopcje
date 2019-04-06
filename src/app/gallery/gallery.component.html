@@ -15,15 +15,12 @@
 
       <span style="padding-left: 2%;" *ngIf="authService.isLoggedIn">
           <i 
-            class="far fa-edit" 
-            (click)="manageGalleryCard(dog)"></i>
-          <i 
             style="padding-left: 1%;" 
             class="far fa-trash-alt" 
             (click)="remove(dog)"></i>
       </span>
     </div>
-    <span (click)="navigate(dog)">
+    <span (click)="navigate(dog.id)">
       <img 
         class="gallery-card-img"
         src="{{ dog.mainImg.downloadUrl }}" 
