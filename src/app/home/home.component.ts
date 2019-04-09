@@ -3,6 +3,7 @@ import { GalleryService } from '../services/gallery.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'home',
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit {
 
   toEdit: boolean = false;
 
-  constructor(private galleryService: GalleryService, private router: Router) { }
+  constructor(private galleryService: GalleryService, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     this.images$ = this.galleryService.get('main-menu');

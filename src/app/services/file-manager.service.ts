@@ -49,7 +49,7 @@ export class FileManagerService {
       .where('dogName', '==', dogName)
       .get()
       .then(value => {
-        if(value.docs){
+        if(value.docs.shift()){
           this.task = this.storage.upload(`${ this.baseMenuPath }/${ dogName }`, file);
 
           this.task.then(() => {
