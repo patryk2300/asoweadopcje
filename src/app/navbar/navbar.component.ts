@@ -10,5 +10,5 @@ export class NavbarComponent {
 
   navbarCollapsed: boolean;
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
 }
