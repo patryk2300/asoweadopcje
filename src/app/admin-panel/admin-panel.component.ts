@@ -14,7 +14,7 @@ export class AdminPanelComponent {
 
   openedSidebar: boolean;
 
-  constructor(private user: AuthService, private modalService: NgbModal) {}
+  constructor(public user: AuthService, private modalService: NgbModal) {}
 
   toggleSidebar() {
 

@@ -15,7 +15,7 @@ export class NewsUploadComponent implements OnInit {
   mainImg: File;
   images: FileList;
 
-  constructor(private activeModal: NgbActiveModal, private fileManager: FileManagerService) { }
+  constructor(public activeModal: NgbActiveModal, private fileManager: FileManagerService) { }
 
   ngOnInit() {
   }
