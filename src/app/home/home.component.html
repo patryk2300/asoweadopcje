@@ -31,7 +31,7 @@
                   <div class="card mb-4 shadow-sm">
                     <div class="card-body">
                     <form #f="ngForm" (ngSubmit)="onSubmit(f)">
-                    <span class="remove-btn">
+                    <span class="remove-btn" *ngIf="authService.isLoggedIn">
                         <i 
                         style="color: black; font-size: 24px;" 
                         class="far fa-trash-alt" 
@@ -65,7 +65,7 @@
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                           <button (click)="navigateById('news',news.id)" class="btn btn-sm btn-outline-secondary">Zobacz</button>
-                          <button class="btn btn-sm btn-outline-secondary" type="button" (click)="toEdit = !toEdit">Edytuj</button>
+                          <button class="btn btn-sm btn-outline-secondary" type="button" *ngIf="authService.isLoggedIn" (click)="toEdit = !toEdit">Edytuj</button>
                           <button *ngIf="toEdit" type="submit" class="btn btn-sm btn-outline-secondary">Aktualizuj</button>
                         </div>
                         <div class="align-items-right">
